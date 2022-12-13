@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{title}}</title>
+    </head>
+    <body>
+
+        <div class="navbar bg-base-300">
+
+            <div class="flex-none lg:hidden">
+                <label for="my-drawer" class="btn btn-square btn-ghost">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </label>
+            </div> 
+            
+            <div class="flex-1">
+              <a class="btn btn-ghost normal-case text-xl">yarural</a>
+            </div>
+
+            <div class="flex-none">
+                <a class="normal-case text-lg font-medium">Fulano de Tal &nbsp</a>
+            </div>
+            
+            <div class="flex-none gap-2">
+                <div class="dropdown dropdown-end">
+                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img src="https://placeimg.com/80/80/people" />
+                        </div>
+                    </label>
+                    <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                        <li>
+                            <a class="justify-between">
+                                Meu perfil
+                                <span class="badge">Novo</span>
+                            </a>
+                        </li>
+                        <li><a>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="drawer drawer-mobile">
+            <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+
+            <div class="drawer-content flex flex-col p-4">
+
+                <!-- Page content here -->
+                @!section('body')
+
+            </div> 
+
+            <div class="drawer-side">
+            <label for="my-drawer" class="drawer-overlay"></label> 
+            <ul class="menu p-4 w-80 bg-base-200 text-base-content">
+                <!-- Sidebar content here -->
+                <li><a class="active">Página inicial</a></li>
+                <li><a>Categorias</a></li>
+                <li><a>Placares de líderes</a></li>
+                <li></li>
+                <li><button class="btn btn-primary">Perguntar</button></li>
+            </ul>
+            </div>
+        </div>
+
+    </body>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</html>
