@@ -1,0 +1,38 @@
+@layout('layouts/main')
+@set('title','Yarural | Perfil')
+
+@section('body')
+
+    <div class="min-h-0 bg-base-200 rounded-lg shadow-xl">
+        <div class="flex flex-col lg:flex-row">
+
+            <div class="flex flex-col p-4 items-center justify-center">
+
+                <!-- Profile picture -->
+                <img src="https://placeimg.com/192/192/people" class="max-w-sm rounded-full shadow-2xl" />
+
+            </div>
+            
+            <div class="flex flex-col p-4 justify-center">
+
+                <!-- Profile description -->
+                <h1 class="text-5xl font-bold">Fulano de Tal</h1>
+                <p class="italic"> Username </p>
+                <p class="py-1.5 font-serif"> Descrição </p>
+                <p class="font-bold"> Pontos: 180pt | Colocação: 18° </p>
+                
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="flex flex-col p-1 items-center justify-center">
+        <div class="tabs">
+            <a class="tab tab-lg tab-bordered tab-active ">Perguntas</a> 
+            <a class="tab tab-lg tab-bordered ">Respostas</a>
+        </div>
+    </div>
+    
+    
+
+@end
