@@ -1,0 +1,48 @@
+@layout('layouts/register')
+@set('title','Yarural | Login')
+@set('formTitle','Cadastro')
+@set('message','Registre-se agora!')
+@set('route','/')
+
+@section('body')
+
+    <div class="form-control">
+        <label class="label">
+        <span class="label-text">Nome</span>
+        </label>
+        <input type="text" placeholder="Nome" class="input input-bordered" />
+    </div>
+
+    <div class="form-control">
+        <label class="label">
+        <span class="label-text">Username</span>
+        </label>
+        <input type="text" placeholder="Username" class="input input-bordered" />
+    </div>
+
+    <div class="form-control">
+        <label class="label">
+        <span class="label-text">E-mail</span>
+        </label>
+        <input type="text" placeholder="E-mail" class="input input-bordered" />
+    </div>
+
+    <div class="form-control">
+        <label class="label">
+        <span class="label-text">Senha</span>
+        </label>
+        <input type="password" placeholder="Senha" class="input input-bordered" />
+    </div>
+
+    <div class="form-control">
+        <label class="label">
+        <span class="label-text">Confirmar Senha</span>
+        </label>
+        <input type="password" placeholder="Confirmar Senha" class="input input-bordered" />
+    </div>
+
+    <div class="form-control mt-6">
+        <button class="btn btn-primary">Cadastrar</button>
+    </div>
+
+@end
