@@ -20,6 +20,12 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+// rotas para teste, pode apagar se quiser
+
 Route.get('/', async ({ view }) => {
-  return view.render('profile')
+  return view.render('auth/profile')
+})
+
+Route.get('/login', async ({ view }) => {
+  return view.render('auth/login')
 })
