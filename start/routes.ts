@@ -20,8 +20,11 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+// rotas para teste, pode apagar se quiser
+
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+  return view.render('auth/profile')
 })
 
 Route.get('/cadastro', 'UserController.create').as('user.create')
+
