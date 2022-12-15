@@ -10,21 +10,23 @@
     <center>
         <div class="artboard artboard-demo phone-1">
             <div class="form-control">
-                <label class="input-group input-group-vertical">
-                <span>Email</span>
-                <input type="text" placeholder="info@site.com" class="input input-bordered" />
-                </label>
-                <br>
-                <label class="input-group input-group-vertical">
-                    <span>Senha</span>
-                    <input type="password" class="input input-bordered" />
-                </label>
-                <div class="form-control mt-6">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                </div>
+                <form action="{{ route('user.store') }}" method="POST">
+                    <label class="input-group input-group-vertical">
+                    <span>Email</span>
+                    <input name='email' type="text" placeholder="info@site.com" class="input input-bordered" />
+                    </label>
+                    <br>
+                    <label class="input-group input-group-vertical">
+                        <span>Senha</span>
+                        <input name="password" type="password" class="input input-bordered" />
+                    </label>
+                    <div class="form-control mt-6">
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
+                </form>
 
             </div>
-        </div> 
+        </div>
     </center>
 
 
