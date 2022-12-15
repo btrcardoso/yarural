@@ -27,4 +27,5 @@ Route.get('/', async ({ view }) => {
 })
 
 Route.get('/cadastro', 'UserController.create').as('user.create')
+Route.post('/cadastro', 'UserController.store').as('user.store')
 
