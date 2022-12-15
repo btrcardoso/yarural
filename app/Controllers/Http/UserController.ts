@@ -1,17 +1,20 @@
-import { Request } from '@adonisjs/core/build/standalone'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
 import UserService from 'App/Services/UserService'
+import UserValidator from 'App/Validators/UserValidator'
 
 export default class UserController {
 
-    public create({ view }: HttpContextContract) {
+    public async create({ view }: HttpContextContract) {
         return view.render('users/create')
     }
 
-    public store({ view, request }: HttpContextContract) {
+    public async store({ view, request }: HttpContextContract) {
 
-       const email =  request.input('email')
-       const password = request.input('password')
+        const data = await request.validate(UserValidator)
+
+        const email =  data.email
+        const password = data.password
 
         UserService.createUser(email,password)
 
