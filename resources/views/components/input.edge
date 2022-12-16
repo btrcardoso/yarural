@@ -4,3 +4,13 @@
     </label>
     <input name="{{ name }}" type= "{{ type }}" placeholder="{{ placeholder}}"  class="input input-bordered" />
 </div>
+
+@if(flashMessages.has(`errors.${name}`))
+
+    <div class="text-red-600">
+
+        {{flashMessages.get(`errors.${name}`)}}
+
+    </div>
+    
+@end
