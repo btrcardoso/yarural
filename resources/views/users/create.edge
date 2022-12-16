@@ -1,37 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <center>
-        <div class="artboard artboard-demo phone-1">
-            <div class="form-control">
-                <form action="{{ route('user.store') }}" method="POST">
-                    <label class="input-group input-group-vertical">
-                    <span>Email</span>
-                    <input name='email' type="text" placeholder="info@site.com" class="input input-bordered" />
-                    </label>
-                    <br>
-                    <label class="input-group input-group-vertical">
-                        <span>Senha</span>
-                        <input name="password" type="password" class="input input-bordered" />
-                    </label>
-                    <div class="form-control mt-6">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    </div>
-                </form>
+@layout('layouts/register')
+@set('title','Yarural | Login')
+@set('formTitle','Cadastro')
+@set('message','Registre-se agora!')
 
-            </div>
+@section('body')
+
+    <form action="{{ route('user.store') }}" method="POST">
+        <div class="form-control">
+            <label class="label">
+            <span class="label-text">Nome</span>
+            </label>
+            <input name="name" type="text" placeholder="Nome" class="input input-bordered" />
         </div>
-    </center>
 
+        <div class="form-control">
+            <label class="label">
+            <span class="label-text">Username</span>
+            </label>
+            <input name="username" type="text" placeholder="Username" class="input input-bordered" />
+        </div>
 
+        <div class="form-control">
+            <label class="label">
+            <span class="label-text">E-mail</span>
+            </label>
+            <input name="email" type="text" placeholder="E-mail" class="input input-bordered" />
+        </div>
 
-</body>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
-<script src="https://cdn.tailwindcss.com"></script>
-</html>
+        <div class="form-control">
+            <label class="label">
+            <span class="label-text">Senha</span>
+            </label>
+            <input name="password" type="password" placeholder="Senha" class="input input-bordered" />
+        </div>
+
+        <div class="form-control">
+            <label class="label">
+            <span class="label-text">Confirmar Senha</span>
+            </label>
+            <input name="password_confirmation" type="password" placeholder="Confirmar Senha" class="input input-bordered" />
+        </div>
+
+        <div class="form-control mt-6">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </form>
+@end
