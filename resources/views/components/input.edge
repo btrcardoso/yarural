@@ -2,7 +2,11 @@
     <label class="label">
     <span class="label-text">{{ label }}</span>
     </label>
-    <input name="{{ name }}" type= "{{ type }}" placeholder="{{ placeholder}}"  class="input input-bordered" />
+    <input name="{{ name }}" type= "{{ type }}" placeholder="{{ placeholder}}"  class="input input-bordered
+        @if(flashMessages.has(`errors.${name}`))
+            input-error
+        @endif
+    " />
 </div>
 
 @if(flashMessages.has(`errors.${name}`))

@@ -32,6 +32,7 @@ export default class UserValidator {
 
 
   public messages = {
+    required: 'Preencha o campo',
     'name.minLength': 'Nome deve ter pelo menos 3 letras',
     'name.maxLength': 'Nome não pode ter mais de 100 letras',
     'username.minLength': 'Username deve ter pelo menos 3 letras',
