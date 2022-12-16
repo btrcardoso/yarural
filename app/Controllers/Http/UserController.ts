@@ -15,8 +15,10 @@ export default class UserController {
 
         const email =  data.email
         const password = data.password
+        const name = data.name
+        const username = data.username
 
-        UserService.createUser(email,password)
+        UserService.createUser(email,password, name, username)
 
         return view.render('auth/profile')
     }
