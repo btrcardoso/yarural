@@ -6,40 +6,41 @@
 @section('body')
 
     <form action="{{ route('user.store') }}" method="POST">
-        <div class="form-control">
-            <label class="label">
-            <span class="label-text">Nome</span>
-            </label>
-            <input name="name" type="text" placeholder="Nome" class="input input-bordered" />
-        </div>
 
-        <div class="form-control">
-            <label class="label">
-            <span class="label-text">Username</span>
-            </label>
-            <input name="username" type="text" placeholder="Username" class="input input-bordered" />
-        </div>
+        @!component('components/input', {
+            name: 'name',
+            type: 'text',
+            label: 'Nome',
+            placeholder: 'Nome'
+        })
 
-        <div class="form-control">
-            <label class="label">
-            <span class="label-text">E-mail</span>
-            </label>
-            <input name="email" type="text" placeholder="E-mail" class="input input-bordered" />
-        </div>
+        @!component('components/input', {
+            name: 'username',
+            type: 'text',
+            label: 'Username',
+            placeholder: 'Username'
+        })
 
-        <div class="form-control">
-            <label class="label">
-            <span class="label-text">Senha</span>
-            </label>
-            <input name="password" type="password" placeholder="Senha" class="input input-bordered" />
-        </div>
+        @!component('components/input', {
+            name: 'email',
+            type: 'email',
+            label: 'E-mail',
+            placeholder: 'E-mail'
+        })
 
-        <div class="form-control">
-            <label class="label">
-            <span class="label-text">Confirmar Senha</span>
-            </label>
-            <input name="password_confirmation" type="password" placeholder="Confirmar Senha" class="input input-bordered" />
-        </div>
+        @!component('components/input', {
+            name: 'password',
+            type: 'password',
+            label: 'Senha',
+            placeholder: 'Senha'
+        })
+
+        @!component('components/input', {
+            name: 'password_confirmation',
+            type: 'password',
+            label: 'Confirmar senha',
+            placeholder: 'Confirmar Senha'
+        })
 
         <div class="form-control mt-6">
             <button type="submit" class="btn btn-primary">Cadastrar</button>
