@@ -27,5 +27,13 @@ export default class UserController {
         return view.render('user/profile')
     }
 
+    public async edit({ view }: HttpContextContract){
+        return view.render('user/edit')
+    }
+
+    public async update({}: HttpContextContract){
+        console.log("update here")
+    }
+
 }
 

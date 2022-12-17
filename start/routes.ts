@@ -23,7 +23,9 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/cadastro', 'UserController.create').as('user.create')
 Route.post('/cadastro', 'UserController.store').as('user.store')
 Route.group(()=>{
-  Route.get('/profile', 'UserController.show').as('user.show')
+  Route.get('/perfil', 'UserController.show').as('user.show')
+  Route.get('/perfil/editar', 'UserController.edit').as('user.edit')
+  Route.post('/perfil/editar', 'UserController.update').as('user.update')
 }).middleware('auth:web')
 
 // Conferir se o login é pra estar no AuthController ou UserController
