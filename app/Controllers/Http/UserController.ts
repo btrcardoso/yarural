@@ -6,10 +6,10 @@ import UserValidator from 'App/Validators/UserValidator'
 export default class UserController {
 
     public async create({ view }: HttpContextContract) {
-        return view.render('users/create')
+        return view.render('user/create')
     }
 
-    public async store({ view, request }: HttpContextContract) {
+    public async store({ request, response }: HttpContextContract) {
 
         const data = await request.validate(UserValidator)
 
@@ -20,11 +20,11 @@ export default class UserController {
 
         UserService.createUser(email,password, name, username)
 
-        return view.render('users/profile')
+        return response.redirect().toRoute('user.show')
     }
 
     public async show({ view }: HttpContextContract){
-        return view.render('users/profile')
+        return view.render('user/profile')
     }
 
 }

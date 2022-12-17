@@ -22,16 +22,15 @@ export default class AuthController {
                   ]
                 }
             })
-            return response.redirect('/login')
+            return response.redirect().toRoute('auth.create')
         }
 
-        return response.redirect('/profile')
-
+        return response.redirect().toRoute('user.show')
     }
 
     public async destroy({ auth, response }: HttpContextContract){
         await auth.use('web').logout()
-        response.redirect('/login')
+        return response.redirect().toRoute('auth.create')
     }
 
 }
