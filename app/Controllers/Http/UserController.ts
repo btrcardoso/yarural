@@ -20,7 +20,11 @@ export default class UserController {
 
         UserService.createUser(email,password, name, username)
 
-        return view.render('auth/profile')
+        return view.render('users/profile')
+    }
+
+    public async show({ view }: HttpContextContract){
+        return view.render('users/profile')
     }
 
 }
