@@ -1,0 +1,28 @@
+<div class="form-control">
+    <label class="label">
+    <span class="label-text">{{ label }}</span>
+    </label>
+    <input name="{{ name }}" type= "{{ type }}" placeholder="{{ placeholder}}" 
+
+        @if(type!='password' && !flashMessages.has(`errors.${name}`) && flashMessages.get(`${name}`)!=null)
+            value="{{flashMessages.get(`${name}`)}}" 
+        @endif 
+    
+        class="input input-bordered
+            @if(flashMessages.has(`errors.${name}`))
+                input-error
+            @endif
+
+        " />
+
+</div>
+
+@if(flashMessages.has(`errors.${name}`))
+
+    <div class="text-red-600">
+
+        {{flashMessages.get(`errors.${name}`)}}
+
+    </div>
+    
+@end

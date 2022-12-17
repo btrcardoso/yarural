@@ -26,6 +26,6 @@ Route.get('/', async ({ view }) => {
   return view.render('auth/profile')
 })
 
-Route.get('/login', async ({ view }) => {
-  return view.render('auth/login')
-})
+Route.get('/cadastro', 'UserController.create').as('user.create')
+Route.post('/cadastro', 'UserController.store').as('user.store')
+
