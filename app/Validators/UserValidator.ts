@@ -41,7 +41,7 @@ export default class UserValidator {
     'password.minLength': 'Mínimo de três caracteres',
     'email.unique': 'E-mail já cadastrado',
     'email.email': 'E-mail inválido',
-    'password_confirmation': 'As senhas devem ser iguais',
+    'password_confirmation.confirmed': 'As senhas devem ser iguais',
     'password.minLenght': 'A senha deve ter pelo menos 3 caracteres'
   }
 }
