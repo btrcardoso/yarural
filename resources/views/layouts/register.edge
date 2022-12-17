@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="autumn">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    @entryPointStyles('app')
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    
+    <style>
+        @charset "UTF-8";
+
+        /*fundo do site */
+
+        #c1,#c2,#c3,#c4,#c5,#c6,#c7,#c8,#c9,#c10{
+            border-radius: 50%;
+            position: absolute;
+            z-index: 1;
+        }
+
+        #c1 {
+            background-color: hsl(var(--p));
+            min-height: 35vh;
+            min-width: 35vh;
+            opacity: 0.5;
+            left: 15%;
+            bottom: 65%;
+        }
+
+        #c2 {
+            background-color: hsl(var(--pf));
+            min-height: 15vh;
+            min-width: 15vh;
+            opacity: 0.5;
+            left: 10%;
+            bottom: 85%;
+        }
+
+
+        #c3 {
+            background-color: hsl(var(--n));
+            min-height: 15vh;
+            min-width: 15vh;
+            opacity: 0.5;
+            right: 10%;
+            bottom: 55%;
+        }
+
+        #c4 {
+            background-color: hsl(var(--pf));
+            min-height: 35vh;
+            min-width: 35vh;
+            opacity: 0.5;
+            right: 10%;
+            bottom: 65%;
+        }
+
+        #c5 {
+            background-color: hsl(var(--sc));
+            min-height: 35vh;
+            min-width: 35vh;
+            opacity: 0.5;
+            right: 15%;
+            bottom: 15%;
+        }
+
+        #c6 {
+            background-color: hsl(var(--n));
+            min-height: 35vh;
+            min-width: 35vh;
+            opacity: 0.5;
+            left: 15%;
+            bottom: 10%;
+        }
+
+        #c7 {
+            background-color: hsl(var(--sc));
+            min-height: 25vh;
+            min-width: 25vh;
+            opacity: 0.5;
+            left: 20%;
+            bottom: 25%;
+        }
+
+        #c8 {
+            background-color: hsl(var(--n));
+            min-height: 35vh;
+            min-width: 35vh;
+            opacity: 0.5;
+            left: 40%;
+            bottom: 65%;
+        }
+  
+    </style>
+    <script>
+        document.addEventListener("mousemove", parallax);
+        function parallax(event) {
+            this.querySelectorAll(".circulo").forEach((shift) => {
+                const posição = shift.getAttribute("value")
+                const x = (window.innerWidth - event.pageX * posição)/90;
+                const y = (window.innerWidth - event.pageY * posição)/90;
+
+                shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content flex-col lg:flex-row-reverse z-10">
+    
+            <div class="text-center lg:text-left">
+                <h1 class="text-5xl font-bold">{{message}}</h1>
+            </div>
+    
+            <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+
+                <div class="card-body">
+
+                    <div class="text-center px-4">
+                        <p class="text-3xl font-bold">{{formTitle}}</p>
+                    </div>
+                    
+                    @!section('body')
+
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+    <section id="primairadiv" class="secão">
+        <div class="circulo" id="c1"value="4"></div>
+        <div class="circulo" id="c2"value="-8"></div>
+        <div class="circulo" id="c3"value="-8"></div>
+        <div class="circulo" id="c4"value="4"></div>
+        <div class="circulo" id="c5"value="-5"></div>
+        <div class="circulo" id="c6"value="8"></div>
+        <div class="circulo" id="c7"value="-5"></div>
+        <div class="circulo" id="c8"value="-5"></div>
+    </section>
+</body>
+
+</html>

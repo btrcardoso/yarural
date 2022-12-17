@@ -1,0 +1,34 @@
+@layout('layouts/register')
+@set('title','Yarural | Login')
+@set('formTitle','Login')
+@set('message','Entre agora!')
+
+@section('body')
+
+    <form action="{{ route('auth.store') }}" method="POST">
+
+        @!component('components/input', {
+            name: 'email',
+            type: 'text',
+            label: 'E-mail',
+            placeholder: 'E-mail'
+        })
+
+        @!component('components/input', {
+            name: 'password',
+            type: 'password',
+            label: 'Senha',
+            placeholder: 'Senha'
+        })
+
+        <label class="label">
+            <a href="#" class="label-text-alt link link-hover">Esqueceu a senha?</a>
+        </label>
+
+        <div class="form-control mt-6">
+            <button class="btn btn-primary">Login</button>
+        </div>
+
+    </form>
+
+@end

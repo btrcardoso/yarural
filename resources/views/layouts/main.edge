@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="cupcake">
+<html lang="en" data-theme="autumn">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{{title}}</title>
+        @entryPointStyles('app')
     </head>
     <body>
 
@@ -38,7 +39,7 @@
                                 <span class="badge">Novo</span>
                             </a>
                         </li>
-                        <li><a>Logout</a></li>
+                        <li><a href="{{ route('auth.destroy') }}">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -69,8 +70,5 @@
         </div>
 
     </body>
-
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.42.1/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
 
 </html>

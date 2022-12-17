@@ -1,0 +1,49 @@
+@layout('layouts/register')
+@set('title','Yarural | Cadastro')
+@set('formTitle','Cadastro')
+@set('message','Registre-se agora!')
+
+@section('body')
+
+    <form action="{{ route('user.store') }}" method="POST">
+
+        @!component('components/input', {
+            name: 'name',
+            type: 'text',
+            label: 'Nome',
+            placeholder: 'Nome'
+        })
+
+        @!component('components/input', {
+            name: 'username',
+            type: 'text',
+            label: 'Username',
+            placeholder: 'Username'
+        })
+
+        @!component('components/input', {
+            name: 'email',
+            type: 'email',
+            label: 'E-mail',
+            placeholder: 'E-mail'
+        })
+
+        @!component('components/input', {
+            name: 'password',
+            type: 'password',
+            label: 'Senha',
+            placeholder: 'Senha'
+        })
+
+        @!component('components/input', {
+            name: 'password_confirmation',
+            type: 'password',
+            label: 'Confirmar senha',
+            placeholder: 'Confirmar Senha'
+        })
+
+        <div class="form-control mt-6">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </form>
+@end
