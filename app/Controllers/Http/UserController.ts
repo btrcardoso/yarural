@@ -33,7 +33,7 @@ export default class UserController {
         return view.render('user/edit')
     }
 
-    public async update({auth, request, view}: HttpContextContract){
+    public async update({auth, request, response}: HttpContextContract){
 
         const user = await User.findOrFail(auth.user?.id)
 
@@ -45,7 +45,7 @@ export default class UserController {
 
         user.save()
 
-        return view.render('user/profile')
+        return response.redirect().toRoute('user.show')
 
     }
 }
