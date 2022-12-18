@@ -38,4 +38,4 @@ Route.group(() => {
   Route.get('/logout', 'AuthController.destroy').as('destroy')
 }).as('auth')
 
-Route.get('/', 'HomeController.index').as('home.index')
+Route.get('/', 'HomeController.index').as('home.index').middleware('silentAuth')
