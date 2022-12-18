@@ -1,6 +1,8 @@
 @layout('layouts/main')
 @set('title','Yarural | Editar Perfil')
 
+
+
 @section('body')
 
     <form action="{{ route('user.update') }}" method="POST">
@@ -32,8 +34,14 @@
                 <label class="label">
                     <span class="label-text font-medium">Descrição</span>
                 </label>
-                <textarea class="textarea" name="descricao" placeholder="Fale sobre você!"></textarea>
+                <textarea class="textarea" name="description" placeholder="Fale sobre você!"></textarea>
             </div>
+            @if(flashMessages.has('errors.description'))
+                <div class="text-red-600">
+                    {{flashMessages.get('errors.description')}}
+                </div>
+            @end
+
 
             <div class="mt-4">
                 <a href="" class="btn btn-secondary">Alterar senha</a>
