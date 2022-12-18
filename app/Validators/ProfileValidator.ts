@@ -11,7 +11,12 @@ export default class ProfileValidator {
       rules.minLength(3),
       rules.maxLength(100),
     ]),
-    description: schema.string.optional([
+    username: schema.string({}, [
+      rules.minLength(3),
+      rules.maxLength(15),
+      rules.unique({table:'users', column: 'username'}),
+    ]),
+    description: schema.string.nullable([
       rules.trim(),
       rules.maxLength(500)
     ])
@@ -21,5 +26,8 @@ export default class ProfileValidator {
     'name.minLength': 'Nome deve ter pelo menos 3 letras',
     'name.maxLength': 'Nome não pode ter mais de 100 letras',
     'description.maxLength': 'Máximo de 500 caracteres',
+    'username.minLength': 'Username deve ter pelo menos 3 letras',
+    'username.maxLength': 'Username não pode ter mais de 15 letras',
+    'username.unique': 'Username já cadastrado',
   }
 }
