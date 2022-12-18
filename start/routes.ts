@@ -21,8 +21,8 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  Route.get('/', 'UserController.create').as('user.create')
-  Route.post('/', 'UserController.store').as('user.store')
+  Route.get('/', 'UserController.create').as('create')
+  Route.post('/', 'UserController.store').as('store')
 })
   .prefix('/cadastro')
   .as('user')
