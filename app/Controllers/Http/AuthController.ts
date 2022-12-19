@@ -25,7 +25,7 @@ export default class AuthController {
             return response.redirect().toRoute('auth.create')
         }
 
-        return response.redirect().toRoute('user.show')
+        return response.redirect().toRoute('home.index')
     }
 
     public async destroy({ auth, response }: HttpContextContract){
