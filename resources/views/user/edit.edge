@@ -43,7 +43,7 @@
                 <label class="label">
                     <span class="label-text font-medium">Descrição</span>
                 </label>
-                <textarea class="textarea" name="description" placeholder="Fale sobre você!"> {{auth.user.description}}</textarea>
+                <textarea class="textarea" name="description" placeholder="Fale sobre você!">{{auth.user.description? auth.user.description: ''}}</textarea>
             </div>
             @if(flashMessages.has('errors.description'))
                 <div class="text-red-600">
