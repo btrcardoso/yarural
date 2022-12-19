@@ -4,6 +4,7 @@ import UserService from 'App/Services/UserService'
 import User from 'App/Models/User'
 import ProfileValidator from 'App/Validators/ProfileValidator'
 import UserValidator from 'App/Validators/UserValidator'
+import UsernameValidator from 'App/Validators/UsernameValidator'
 
 export default class UserController {
 
@@ -37,7 +38,20 @@ export default class UserController {
 
         const user = await User.findOrFail(auth.user?.id)
 
-        const data = await request.validate(ProfileValidator)
+        const inputUsername = request.input('username')
+        
+        var data: {
+            name: string;
+            username: string;
+            description: string | null;
+        };
+
+        if(inputUsername != user.username) {
+            data = await  request.validate(ProfileValidator)
+        }
+        else {
+            data = await request.validate(UsernameValidator)
+        }
 
         user.name = data.name
         user.username = data.username
