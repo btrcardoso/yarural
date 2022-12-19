@@ -23,7 +23,7 @@ export default class UserController {
 
         UserService.createUser(email,password, name, username)
 
-        return response.redirect().toRoute('user.show')
+        return response.redirect().toRoute('auth.create')
     }
 
     public async show({ view }: HttpContextContract){
