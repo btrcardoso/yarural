@@ -23,6 +23,7 @@ export default class ProfileValidator {
   })
 
   public messages: CustomMessages = {
+    required: 'O campo não pode ficar vazio',
     'name.minLength': 'Nome deve ter pelo menos 3 letras',
     'name.maxLength': 'Nome não pode ter mais de 100 letras',
     'description.maxLength': 'Máximo de 500 caracteres',
