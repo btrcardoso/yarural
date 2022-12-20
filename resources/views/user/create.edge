@@ -41,9 +41,17 @@
             label: 'Confirmar senha',
             placeholder: 'Confirmar Senha'
         })
+        
 
         <div class="form-control mt-6">
             <button type="submit" class="btn btn-primary">Cadastrar</button>
         </div>
+
     </form>
+
+    
+    <div class="flex items-center justify-center">
+        <a href="{{ route('auth.create') }}" class="label-text-alt link link-hover">Já possuo uma conta!</a>
+    </div>
+    
 @end
