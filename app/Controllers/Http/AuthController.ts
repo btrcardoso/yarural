@@ -3,8 +3,15 @@ import AuthValidator from 'App/Validators/AuthValidator'
 
 export default class AuthController {
 
-    public async create({ view }: HttpContextContract){
-        return view.render('auth/login')
+    public async create({auth, response, view }: HttpContextContract){
+
+        if(auth.isLoggedIn) {
+            response.redirect().toRoute('home.index')
+        }
+        else {
+            return view.render('auth/login')
+        }
+
     }
 
     public async store({auth, request, response, session}: HttpContextContract){

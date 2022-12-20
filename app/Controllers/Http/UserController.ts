@@ -8,8 +8,15 @@ import UsernameValidator from 'App/Validators/UsernameValidator'
 
 export default class UserController {
 
-    public async create({ view }: HttpContextContract) {
-        return view.render('user/create')
+    public async create({ auth, view, response }: HttpContextContract) {
+
+        if(auth.isLoggedIn) {
+            response.redirect().toRoute('home.index')
+        }
+        else {
+            return view.render('user/create')
+        }
+
     }
 
     public async store({ request, response }: HttpContextContract) {
