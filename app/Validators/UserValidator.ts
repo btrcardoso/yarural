@@ -14,7 +14,11 @@ export default class UserValidator {
     username: schema.string({}, [
       rules.minLength(3),
       rules.maxLength(15),
+      rules.alphaNum({
+        allow: ['underscore', 'dash']
+      }),
       rules.unique({table:'users', column: 'username'}),
+      rules.trim()
     ]),
     email: schema.string({ trim: true }, [
       rules.email(),
@@ -37,6 +41,7 @@ export default class UserValidator {
     'username.minLength': 'Username deve ter pelo menos 3 letras',
     'username.maxLength': 'Username não pode ter mais de 15 letras',
     'username.unique': 'Username já cadastrado',
+    'username.alphaNum' : 'Caracteres Inválidos',
     'password.minLength': 'Mínimo de três caracteres',
     'email.unique': 'E-mail já cadastrado',
     'email.email': 'E-mail inválido',
