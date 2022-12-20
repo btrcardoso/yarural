@@ -11,21 +11,24 @@
             name: 'name',
             type: 'text',
             label: 'Nome',
-            placeholder: 'Nome'
+            placeholder: 'Nome',
+            value: flashMessages.values? flashMessages.values.name : ''
         })
 
         @!component('components/input', {
             name: 'username',
             type: 'text',
             label: 'Username',
-            placeholder: 'Username'
+            placeholder: 'Username',
+            value: flashMessages.values? flashMessages.values.username : ''
         })
 
         @!component('components/input', {
             name: 'email',
             type: 'email',
             label: 'E-mail',
-            placeholder: 'E-mail'
+            placeholder: 'E-mail',
+            value: flashMessages.values? flashMessages.values.email : ''
         })
 
         @!component('components/input', {

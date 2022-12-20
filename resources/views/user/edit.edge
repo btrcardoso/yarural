@@ -29,7 +29,7 @@
                 type: 'text',
                 label: 'Nome',
                 placeholder: 'Nome',
-                value: auth.user.name
+                value: flashMessages.values? flashMessages.values.name : auth.user.name
             })
 
             @!component('components/input', {
@@ -37,14 +37,15 @@
                 type: 'text',
                 label: 'Username',
                 placeholder: 'Username',
-                value: auth.user.username
+                value: flashMessages.values? flashMessages.values.username : auth.user.username
             })
 
             <div class="form-control">
                 <label class="label">
                     <span class="label-text font-medium">Descrição</span>
                 </label>
-                <textarea class="textarea" name="description" placeholder="Fale sobre você!">{{auth.user.description? auth.user.description: ''}}</textarea>
+                <textarea class="textarea" name="description" placeholder="Fale sobre você!">{{
+                flashMessages.values? (flashMessages.values.description? flashMessages.values.description:'') : (auth.user.description? auth.user.description: '')}}</textarea>
             </div>
             @if(flashMessages.has('errors.description'))
                 <div class="text-red-600">

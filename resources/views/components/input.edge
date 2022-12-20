@@ -4,9 +4,9 @@
     </label>
     <input value="{{ value? value: '' }}" name="{{ name }}" type= "{{ type }}" placeholder="{{ placeholder}}" 
 
-        @if(type!='password' && !flashMessages.has(`errors.${name}`) && flashMessages.get(`${name}`)!=null)
+        {{--  @if(type!='password' && !flashMessages.has(`errors.${name}`) && flashMessages.get(`${name}`)!=null)
             value="{{flashMessages.get(`${name}`)}}" 
-        @endif 
+        @endif   --}}
     
         class="input input-bordered
             @if(flashMessages.has(`errors.${name}`))
