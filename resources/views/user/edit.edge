@@ -1,0 +1,68 @@
+@layout('layouts/main')
+@set('title','Yarural | Editar Perfil')
+
+
+
+@section('body')
+
+    <form action="{{ route('user.update') }}" method="POST">
+
+        <div class="min-h-0 bg-base-200 rounded-lg shadow-xl p-4">
+
+            <div class="flex flex-col p-4 items-center justify-center">
+
+                <!-- Profile picture -->
+                <img src="https://placeimg.com/192/192/people" class="max-w-sm rounded-full shadow-2xl" />
+
+                <div class="form-control mt-4">
+                    <label class="label">
+                        <span class="label-text font-medium">Foto de perfil</span>
+                    </label>
+                    <input type="file" class="file-input file-input-bordered file-input-secondary file-input-xs w-full max-w-xs" />
+                </div>
+
+            </div>
+
+            @!component('components/input', {
+                name: 'name',
+                type: 'text',
+                label: 'Nome',
+                placeholder: 'Nome',
+                value: auth.user.name
+            })
+
+            @!component('components/input', {
+                name: 'username',
+                type: 'text',
+                label: 'Username',
+                placeholder: 'Username',
+                value: auth.user.username
+            })
+
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text font-medium">Descrição</span>
+                </label>
+                <textarea class="textarea" name="description" placeholder="Fale sobre você!">{{auth.user.description? auth.user.description: ''}}</textarea>
+            </div>
+            @if(flashMessages.has('errors.description'))
+                <div class="text-red-600">
+                    {{flashMessages.get('errors.description')}}
+                </div>
+            @end
+
+
+            {{--  <div class="mt-4">
+                <a href="" class="btn btn-secondary">Alterar senha</a>
+            </div>  --}}
+
+        </div>
+            
+        <div class="flex flex-col p-4 items-center justify-center">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+        
+    </form>
+    
+
+@end

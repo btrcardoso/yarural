@@ -27,8 +27,10 @@ Route.group(() => {
   .prefix('/cadastro')
   .as('user')
 
-Route.group(() => {
-  Route.get('/profile', 'UserController.show').as('user.show')
+Route.group(()=>{
+  Route.get('/perfil', 'UserController.show').as('user.show')
+  Route.get('/perfil/editar', 'UserController.edit').as('user.edit')
+  Route.post('/perfil/editar', 'UserController.update').as('user.update')
 }).middleware('auth:web')
 
 // Conferir se o login é pra estar no AuthController ou UserController

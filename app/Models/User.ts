@@ -21,6 +21,9 @@ export default class User extends BaseModel {
   @column()
   public username: string
 
+  @column()
+  public description: string | null
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

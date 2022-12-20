@@ -3,7 +3,7 @@
 
 @section('body')
 
-    <div class="min-h-0 bg-base-200 rounded-lg shadow-xl">
+    <div class="relative min-h-0 bg-base-200 rounded-lg shadow-xl">
         <div class="flex flex-col lg:flex-row">
 
             <div class="flex flex-col p-4 items-center justify-center">
@@ -16,14 +16,21 @@
             <div class="flex flex-col p-4 justify-center">
 
                 <!-- Profile description -->
-                <h1 class="text-5xl font-bold">Fulano de Tal</h1>
-                <p class="italic"> Username </p>
-                <p class="py-1.5 font-serif"> Descrição </p>
-                <p class="font-bold"> Pontos: 180pt | Colocação: 18° </p>
-                
+                <h1 class="text-5xl font-bold">{{auth.user.name}}</h1>
+                <p class="italic"> {{ auth.user.username }} </p>
+                <p class="py-1.5 font-serif"> {{ auth.user.description? auth.user.description : '' }} </p>
+                <p class="font-bold"> Pontos: | Colocação:  </p>
+
+            </div>
+
+            <div class="absolute top-0 right-0 p-4"> 
+                <a class="btn btn-square btn-ghost" href=" {{route('user.edit')}} ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon></svg>
+                </a>
             </div>
 
         </div>
+
     </div>
     
     <div class="flex flex-col p-1 items-center justify-center">

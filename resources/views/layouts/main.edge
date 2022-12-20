@@ -9,7 +9,7 @@
     </head>
     <body>
 
-        <div class="navbar bg-base-300">
+        <div class="navbar absolute bg-base-300 h-16">
 
             <div class="flex-none lg:hidden">
                 <label for="my-drawer" class="btn btn-square btn-ghost">
@@ -18,10 +18,10 @@
             </div> 
             
             <div class="flex-1">
-              <a class="btn btn-ghost normal-case text-xl">Yarural</a>
+              <a href="{{route('home.index')}}" class="btn btn-ghost normal-case text-xl">Yarural</a>
             </div>
 
-            <div class="flex-none">
+            <div class="flex-none p-1">
                 <a class="normal-case font-medium"> {{auth.user.name}} </a>
             </div>
             
@@ -34,9 +34,8 @@
                     </label>
                     <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                         <li>
-                            <a class="justify-between">
+                            <a class="justify-between" href="{{ route('user.show') }}">
                                 Meu perfil
-                                <span class="badge">Novo</span>
                             </a>
                         </li>
                         <li><a href="{{ route('auth.destroy') }}">Logout</a></li>
@@ -46,7 +45,7 @@
             
         </div>
 
-        <div class="drawer drawer-mobile">
+        <div class="drawer drawer-mobile pt-16">
             <input id="my-drawer" type="checkbox" class="drawer-toggle" />
 
             <div class="drawer-content flex flex-col p-4">
@@ -60,7 +59,7 @@
             <label for="my-drawer" class="drawer-overlay"></label> 
             <ul class="menu p-4 w-80 bg-base-200 text-base-content">
                 <!-- Sidebar content here -->
-                <li><a class="active">Página inicial</a></li>
+                <li><a href="{{ route('home.index') }}" class="active">Página inicial</a></li>
                 <li><a>Categorias</a></li>
                 <li><a>Placares de líderes</a></li>
                 <li></li>
