@@ -1,1 +1,17 @@
-Criacao de pergunta
+<form action="{{ route('question.store') }}" method="POST">
+
+    @!input({
+        label: 'Pergunta',
+        placeholder: 'Digite sua pergunta',
+        name: 'question'
+    })
+
+    <label class="label">
+        <span class="label-text font-medium">Descrição</span>
+    </label>
+
+    <textarea  name="description" cols="30" rows="10"></textarea>
+
+    <button type="submit">Enviar Pergunta</button>
+
+</form>

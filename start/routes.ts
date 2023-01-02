@@ -43,3 +43,4 @@ Route.group(() => {
 Route.get('/', 'HomeController.index').as('home.index').middleware('silentAuth')
 
 Route.get('/perguntar', 'QuestionsController.create').as('question.create').middleware('auth')
+Route.post('/perguntar', 'QuestionsController.store').as('question.store').middleware('auth')
