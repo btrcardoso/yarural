@@ -1,23 +1,29 @@
-<form action="{{ route('question.store') }}" method="POST">
+@layout('layouts/main')
+@set('title','Yarural | Perguntar')
 
-    @!input({
-        label: 'Pergunta',
-        placeholder: 'Digite sua pergunta',
-        name: 'question'
-    })
+@section('body')
+  
+    <form action="{{ route('question.store') }}" method="POST">
 
-    <label class="label">
-        <span class="label-text font-medium">Descrição</span>
-    </label>
+        @!input({
+            label: 'Pergunta',
+            placeholder: 'Digite sua pergunta',
+            name: 'question'
+        })
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text font-medium">Descrição</span>
+            </label>
 
-    <textarea  name="description" cols="30" rows="10"></textarea>
-
-    @if(flashMessages.has('errors.description'))
-        <div class="text-red-600">
-            {{flashMessages.get('errors.description')}}
+            <textarea  name="description" class="textarea" placeholder="Descrição"></textarea>
         </div>
-    @end
+        @if(flashMessages.has('errors.description'))
+            <div class="text-red-600">
+                {{flashMessages.get('errors.description')}}
+            </div>
+        @end
 
-    <button type="submit">Enviar Pergunta</button>
+        <button type="submit">Enviar Pergunta</button>
 
-</form>
+    </form>
+@end
