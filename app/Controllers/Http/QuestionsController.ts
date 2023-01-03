@@ -1,5 +1,6 @@
  import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import QuestionService from 'App/Services/QuestionService'
+import QuestionValidator from 'App/Validators/QuestionValidator'
 
 export default class QuestionsController {
 
@@ -12,7 +13,9 @@ export default class QuestionsController {
 
     public async store({response, request}: HttpContextContract){
 
-        QuestionService.createQuestion(request.input('question'), request.input('description'))
+        const data = await request.validate(QuestionValidator)
+
+        QuestionService.createQuestion(data.question, data.description)
 
         return response.redirect().toRoute('home.index')
     

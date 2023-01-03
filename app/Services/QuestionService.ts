@@ -2,7 +2,7 @@ import Question from "App/Models/Question"
 
 export default class QuestionService {
 
-    public static async createQuestion(question: string, description: string) {
+    public static async createQuestion(question: string, description: string | null) {
     
         const quest = new Question()
         quest.question = question

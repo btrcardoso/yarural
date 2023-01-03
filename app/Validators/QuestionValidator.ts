@@ -10,7 +10,7 @@ export default class QuestionValidator {
       rules.minLength(3),
       rules.maxLength(240),
     ]),
-    description: schema.string.nullableAndOptional({}, [
+    description: schema.string.nullable({}, [
       rules.trim(),
       rules.maxLength(2048)
     ])
@@ -19,7 +19,7 @@ export default class QuestionValidator {
   public messages: CustomMessages = {
     required: 'A pergunta não pode ser vazia',
     'question.minLength' : 'A pergunta deve ter pelo menos 3 caracteres',
-    'question.maxLenght' : 'A pergunta deve ter no máximo 240 caracteres',
+    'question.maxLength' : 'A pergunta deve ter no máximo 240 caracteres',
     'description.maxLenght' : 'A descrição deve ter no máximo 2048 caracteres'
   }
 }
