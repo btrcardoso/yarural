@@ -12,6 +12,12 @@
 
     <textarea  name="description" cols="30" rows="10"></textarea>
 
+    @if(flashMessages.has('errors.description'))
+        <div class="text-red-600">
+            {{flashMessages.get('errors.description')}}
+        </div>
+    @end
+
     <button type="submit">Enviar Pergunta</button>
 
 </form>
