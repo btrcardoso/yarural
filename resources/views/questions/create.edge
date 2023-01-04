@@ -5,16 +5,18 @@
   
     <form action="{{ route('question.store') }}" method="POST">
 
-        @!input({
+        @!textarea({
             label: 'Pergunta',
             placeholder: 'Digite sua pergunta',
-            name: 'question'
+            name: 'question',
+            rows:'1'
         })
 
         @!textarea({
             label: 'Descrição',
             name: 'description',
-            placeholder: 'Descrição'
+            placeholder: 'Descrição',
+            rows:'5'
         })
 
         <div class="flex flex-row-reverse">
