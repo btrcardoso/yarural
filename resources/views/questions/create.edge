@@ -10,20 +10,12 @@
             placeholder: 'Digite sua pergunta',
             name: 'question'
         })
-        <div class="form-control">
-            <label class="label">
-                <span class="label-text font-medium">Descrição</span>
-            </label>
 
-            <textarea  name="description" class="textarea textarea-bordered" placeholder="Descrição"></textarea>
-
-            @if(flashMessages.has('errors.description'))
-                <div class="text-red-600">
-                    {{flashMessages.get('errors.description')}}
-                </div>
-            @end
-
-        </div>
+        @!textarea({
+            label: 'Descrição',
+            name: 'description',
+            placeholder: 'Descrição'
+        })
 
         <div class="flex flex-row-reverse">
             <div class="py-3 pl-1">

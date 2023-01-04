@@ -1,0 +1,15 @@
+<div class="form-control">
+
+    <label class="label">
+        <span class="label-text font-medium">{{label?label:''}}</span>
+    </label>
+
+    <textarea  name="{{name?name:''}}" class="textarea textarea-bordered" placeholder="{{placeholder?placeholder:''}}"></textarea>
+
+    @if(flashMessages.has('errors.description'))
+        <div class="text-red-600">
+            {{flashMessages.get('errors.description')}}
+        </div>
+    @end
+
+</div>
