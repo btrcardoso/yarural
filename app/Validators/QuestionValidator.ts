@@ -20,6 +20,6 @@ export default class QuestionValidator {
     required: 'A pergunta não pode ser vazia',
     'question.minLength' : 'A pergunta deve ter pelo menos 3 caracteres',
     'question.maxLength' : 'A pergunta deve ter no máximo 240 caracteres',
-    'description.maxLenght' : 'A descrição deve ter no máximo 2048 caracteres'
+    'description.maxLength' : 'A descrição deve ter no máximo 2048 caracteres'
   }
 }
