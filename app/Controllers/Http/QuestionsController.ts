@@ -1,4 +1,5 @@
  import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Question from 'App/Models/Question'
 import QuestionService from 'App/Services/QuestionService'
 import QuestionValidator from 'App/Validators/QuestionValidator'
 
@@ -15,10 +16,18 @@ export default class QuestionsController {
 
         const data = await request.validate(QuestionValidator)
 
-        QuestionService.createQuestion(data.question, data.description)
+        const quest = await QuestionService.createQuestion(data.question, data.description)
 
-        return response.redirect().toRoute('home.index')
+        return response.redirect().toRoute('question.show', {id: quest.id})
     
+    }
+
+    public async show({params, view}: HttpContextContract){
+
+        const quest = await Question.findOrFail(params.id)
+
+        return view.render('questions/show', {question: quest})
+
     }
 
 }
