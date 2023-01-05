@@ -2,33 +2,47 @@
 @set('title','Yarural | Perguntar')
 
 @section('body')
-  
-    <form action="{{ route('question.store') }}" method="POST">
 
-        @!textarea({
-            label: 'Pergunta',
-            placeholder: 'Digite sua pergunta',
-            name: 'question',
-            rows:'1'
-        })
+    <div class="min-h-0 bg-base-200 rounded-lg shadow-xl p-4">
+    
+        <form action="{{ route('question.store') }}" method="POST">
 
-        @!textarea({
-            label: 'Descrição',
-            name: 'description',
-            placeholder: 'Descrição',
-            rows:'5'
-        })
+            @!textarea({
+                label: 'Pergunta',
+                placeholder: 'Digite sua pergunta',
+                name: 'question',
+                rows:'1'
+            })
 
-        <div class="flex flex-row-reverse">
-            <div class="py-3 pl-1">
-                <button class="btn btn-primary " type="submit">Enviar Pergunta</button>
+            @!textarea({
+                label: 'Descrição',
+                name: 'description',
+                placeholder: 'Descrição',
+                rows:'5'
+            })
+
+            <div class="flex flex-row-reverse">
+
+                <div class="py-3 pl-1">
+
+                    @!submit({
+                        value: 'Enviar pergunta'
+                    })
+
+                </div>
+                
+                <div class="py-3">
+
+                    @!button({
+                        routeName: 'home.index',
+                        value: 'Cancelar'
+                    })
+
+                </div> 
+                
             </div>
-            
-            <div class="py-3">
-                <a href="{{ route('home.index') }}" class="btn btn-secondary btn-outline"> Cancelar </a>
-            </div> 
 
-        </div>
+        </form>
 
-    </form>
+    </div>
 @end
