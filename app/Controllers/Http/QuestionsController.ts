@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Category from 'App/Models/Category'
 import Question from 'App/Models/Question'
 import User from 'App/Models/User'
 import QuestionService from 'App/Services/QuestionService'
@@ -6,17 +7,23 @@ import QuestionValidator from 'App/Validators/QuestionValidator'
 
 export default class QuestionsController {
   public async create({ view }: HttpContextContract) {
-    return view.render('questions/create')
+
+    const categories = await Category.all();
+
+    return view.render('questions/create', {categories})
   }
 
   public async store({ response, request, auth }: HttpContextContract) {
-    
+
     const data = await request.validate(QuestionValidator)
+
+    const categoryId = data.categoryId ? data.categoryId : null; 
 
     const quest = await QuestionService.createQuestion(
       data.question,
       data.description,
-      auth.user!.id
+      auth.user!.id,
+      categoryId
     )
 
     return response.redirect().toRoute('question.show', { id: quest.id })
