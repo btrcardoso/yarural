@@ -9,6 +9,7 @@ export default class extends BaseSchema {
 
       table.string('question', 240).notNullable()
       table.string('description')
+      table.integer('user_id').notNullable().references('id').inTable('users')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

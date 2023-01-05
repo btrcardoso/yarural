@@ -11,6 +11,9 @@ export default class Question extends BaseModel {
   @column()
   public description: string | null
 
+  @column()
+  public userId: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

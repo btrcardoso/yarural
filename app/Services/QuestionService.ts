@@ -2,11 +2,12 @@ import Question from "App/Models/Question"
 
 export default class QuestionService {
 
-    public static async createQuestion(question: string, description: string | null) {
+    public static async createQuestion(question: string, description: string | null, userId: number) {
     
         const quest = new Question()
         quest.question = question
         quest.description = description
+        quest.userId = userId
 
         await quest.save()
         return quest

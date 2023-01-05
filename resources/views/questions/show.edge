@@ -1,2 +1,15 @@
-{{ question.question }}
-{{ question.description }}
+@layout('layouts/main')
+@set('title','Yarural | {{ question.question }}')
+
+@section('body')
+  
+<div>
+    {{ question.question }}
+
+    
+    {{ question.description }}
+
+</div>
+
+
+@end
