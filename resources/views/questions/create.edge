@@ -3,13 +3,17 @@
 
 @section('body')
 
+@!simpletext({
+    text: "Faça uma pergunta:"
+})
+
     <div class="min-h-0 bg-base-200 rounded-lg shadow-xl p-4">
     
         <form action="{{ route('question.store') }}" method="POST">
 
             @!textarea({
-                label: 'Pergunta',
-                placeholder: 'Digite sua pergunta',
+                label: 'Título',
+                placeholder: 'Digite o título da pergunta',
                 name: 'question',
                 rows:'1'
             })
@@ -17,7 +21,7 @@
             @!textarea({
                 label: 'Descrição',
                 name: 'description',
-                placeholder: 'Descrição',
+                placeholder: 'Digite a descrição da pergunta',
                 rows:'5'
             })
 
