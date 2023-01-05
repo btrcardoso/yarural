@@ -4,12 +4,23 @@
         <span class="label-text font-medium">{{label?label:''}}</span>
     </label>
 
-    <textarea  name="{{name?name:''}}" class="textarea textarea-bordered" rows="{{rows?rows:''}}" placeholder="{{placeholder?placeholder:''}}"></textarea>
+    <textarea 
+        name="{{name?name:''}}" 
+        rows="{{rows?rows:''}}" 
+        placeholder="{{placeholder?placeholder:''}}"
+        class="textarea textarea-bordered
+            @if(flashMessages.has(`errors.${name}`))
+                textarea-error
+            @endif
+        "
+    ></textarea>
 
-    @if(flashMessages.has('errors.description'))
+    @if(flashMessages.has(`errors.${name}`))
+
         <div class="text-red-600">
-            {{flashMessages.get('errors.description')}}
+            {{flashMessages.get(`errors.${name}`)}}
         </div>
-    @end
+
+    @endif
 
 </div>
