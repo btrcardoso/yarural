@@ -1,0 +1,17 @@
+<div class="form-control w-full max-w-xs">
+
+    <label class="label">
+    <span class="label-text  font-medium">{{label?label:''}}</span>
+    </label>
+
+    <select class="select select-bordered" name="{{name ? name : ''}}">
+
+        <option disabled selected>{{disabledMesssage}}</option>
+
+        @each(option in options)
+            <option value="{{option.id ? option.id : null}}">{{option.name}}</option>
+        @end
+
+    </select>
+
+</div>
