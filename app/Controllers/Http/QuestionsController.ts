@@ -32,7 +32,9 @@ export default class QuestionsController {
   public async show({ params, view }: HttpContextContract) {
     const quest = await Question.findOrFail(params.id)
     const user = await User.findOrFail(quest.userId)
+    const categ = await Category.find(quest.categoryId) || null
+    const date  = quest.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' hh':'mm")
 
-    return view.render('questions/show', { question: quest , user: user})
+    return view.render('questions/show', { question: quest , user, date, category: categ})
   }
 }
