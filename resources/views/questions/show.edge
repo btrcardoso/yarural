@@ -1,14 +1,33 @@
 @layout('layouts/main')
-@set('title','Yarural | {{ question.question }}')
+@set('title',`Yarural | ${question.question}`)
 
 @section('body')
   
 <div>
-    {{ question.question }}
-    <br>
-    {{ question.description }}
-    <br>
-    De: {{ user.name }}
+    
+
+    <div class="min-h-0 bg-base-200 rounded-lg shadow-xl p-1">
+        
+        <div class="p-0">
+            <!-- User name -->
+            <label class="label p-0">
+                <span class="label-text"> Pergunta feita por:
+                    <a class="hover:underline" href="">{{ user.name }}</a> 
+                    
+                </span>
+            </label>
+        </div>
+
+        <div class="p-3">
+            <!-- question's content -->
+            {{ question.question }}
+            <br>
+            {{ question.description }}
+            <br>
+            De: {{ user.name }}
+        </div>
+        
+    </div>
 
 </div>
 

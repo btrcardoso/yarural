@@ -13,6 +13,8 @@
                 textarea-error
             @endif
         "
+        minlength="{{minLength ? minLength:''}}"
+        maxlength="{{maxLength ? maxLength:''}}"
     ></textarea>
 
     @if(flashMessages.has(`errors.${name}`))

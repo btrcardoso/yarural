@@ -15,14 +15,17 @@
                 label: 'Título',
                 placeholder: 'Digite o título da pergunta',
                 name: 'question',
-                rows:'1'
+                rows:'2',
+                minLength:'3',
+                maxLength: '240'
             })
 
             @!textarea({
                 label: 'Descrição',
                 name: 'description',
                 placeholder: 'Digite a descrição da pergunta',
-                rows:'5'
+                rows:'5',
+                maxLength: '2048'
             })
 
             @!select({
