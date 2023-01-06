@@ -37,4 +37,14 @@ export default class QuestionsController {
 
     return view.render('questions/show', { question: quest , user, date, category: categ})
   }
+
+  public async destroy({params, response, auth} : HttpContextContract){
+    const quest = await Question.findOrFail(params.id)
+
+    if(quest.userId == auth.user!.id){
+      await QuestionService.destroyQuestion(quest.id)
+    }
+    
+    return response.redirect().toRoute('user.show')
+  }
 }

@@ -33,7 +33,6 @@ Route.group(()=>{
   Route.post('/perfil/editar', 'UserController.update').as('user.update')
 }).middleware('auth:web')
 
-// Conferir se o login é pra estar no AuthController ou UserController
 Route.group(() => {
   Route.get('/login', 'AuthController.create').as('create')
   Route.post('/login', 'AuthController.store').as('store')
@@ -42,6 +41,9 @@ Route.group(() => {
 
 Route.get('/', 'HomeController.index').as('home.index').middleware('silentAuth')
 
-Route.get('/perguntar', 'QuestionsController.create').as('question.create').middleware('auth')
-Route.post('/perguntar', 'QuestionsController.store').as('question.store').middleware('auth')
-Route.get('/pergunta/:id', 'QuestionsController.show').as('question.show').middleware('auth')
+Route.group(() => {
+  Route.get('/perguntar', 'QuestionsController.create').as('question.create')
+  Route.post('/perguntar', 'QuestionsController.store').as('question.store')
+  Route.get('/pergunta/:id', 'QuestionsController.show').as('question.show')
+  Route.get('/pergunta/:id/delete', 'QuestionsController.destroy').as('question.destroy')
+}).middleware('auth')
