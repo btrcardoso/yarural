@@ -3,7 +3,7 @@
 
 @section('body')
   
-    <div class="bg-base-100 rounded-lg shadow p-4">
+    <div class="bg-base-200 rounded-t-lg shadow p-4">
 
         <div>
             <!-- Title -->
@@ -105,5 +105,48 @@
         @endif
         
     </div>
+
+    <div class="bg-base-100 rounded-b-lg shadow p-4">
+
+        @!simpletext({
+            text: "Responder"
+        })
+
+        <form action="{{ route('question.store') }}" method="POST">
+
+            @!textarea({
+                label: 'Título',
+                placeholder: 'Digite o título da resposta',
+                name: 'question',
+                rows:'1',
+                minLength:'3',
+                maxLength: '240'
+            })
+        
+            @!textarea({
+                label: 'Descrição',
+                name: 'description',
+                placeholder: 'Digite a descrição da resposta',
+                rows:'5',
+                maxLength: '2048'
+            })
+        
+            <div class="flex flex-row-reverse">
+        
+                <div class="py-3 pl-1">
+        
+                    @!submit({
+                        value: 'Enviar'
+                    })
+        
+                </div>
+                
+            </div>
+        
+        </form>
+
+    </div>
+
+   
 
 @end
