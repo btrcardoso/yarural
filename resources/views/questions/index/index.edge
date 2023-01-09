@@ -1,0 +1,10 @@
+@each(question in questions)
+
+    <div class="bg-base-100 rounded-lg shadow p-4">
+        <div>
+            <!-- Title -->
+            <a class="text-2 font-bold break-words" href="pergunta/{{ question.id }}">{{ question.question }}</a>
+        </div>
+    </div>
+
+@endeach
