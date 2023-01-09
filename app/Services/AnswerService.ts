@@ -9,7 +9,7 @@ export default class AnswerService{
         return answer
     }
 
-    public static async destroy(id : number){
+    public static async destroyAnswer(id : number){
 
         const answer = await Answer.findOrFail(id)
         answer.delete()

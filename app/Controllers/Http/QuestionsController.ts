@@ -35,7 +35,10 @@ export default class QuestionsController {
     const categ = await Category.find(quest.categoryId) || null
     const date  = quest.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' hh':'mm")
 
-    return view.render('questions/show', { question: quest , user, date, category: categ})
+    await quest.load('answers')
+    const answers = quest.answers
+
+    return view.render('questions/show', { question: quest , user, date, category: categ, answers})
   }
 
   public async destroy({params, response, auth} : HttpContextContract){
