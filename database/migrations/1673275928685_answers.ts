@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('question_id').references('id').inTable('questions').notNullable()
-      table.integer('user_id').references('id').inTable('user').notNullable()
+      table.integer('user_id').references('id').inTable('users').notNullable()
       table.string('description').notNullable()
       table.string('source').nullable()
 

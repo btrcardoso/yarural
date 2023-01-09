@@ -1,4 +1,4 @@
-import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class AnswerValidator {
@@ -7,13 +7,15 @@ export default class AnswerValidator {
   public schema = schema.create({
     description: schema.string({}, [
       rules.trim(),
-      rules.minLength(1),
       rules.maxLength(2048)
+    ]),
+    source: schema.string.nullable({}, [
+      rules.trim(),
     ])
   })
 
   public messages = {
-    'description.minLength' : 'A descrição deve ter no mínimo 1 caractere.',
+    required: 'A descrição da resposta não pode ser vazia',
     'description.maxLength' : 'A descrição deve ter no máximo 2048 caracteres.',
   }
 }
