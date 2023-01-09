@@ -33,7 +33,7 @@ export default class QuestionsController {
     const quest = await Question.findOrFail(params.id)
     const user = await User.findOrFail(quest.userId)
     const categ = await Category.find(quest.categoryId) || null
-    const date  = quest.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' hh':'mm")
+    const date  = quest.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm")
 
     return view.render('questions/show', { question: quest , user, date, category: categ})
   }
