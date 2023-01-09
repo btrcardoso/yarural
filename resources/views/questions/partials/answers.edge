@@ -1,5 +1,39 @@
+@if(answers)
+    <p class="font-sans font-bold text pt-4">Respostas</p>
+@endif
 @each(answer in answers)
+    <br>
+    <div class="bg-base-200 rounded shadow p-4">
 
-    {{answer.description}}
+        <div class="flex justify-between">
+            <!-- Image and username -->
+            @!component('components/imageAndUsername', {
+                username: user.name
+            })
 
+            <!-- Votes -->
+            @!component('components/votes',{
+                votes:'-2'
+            })
+        </div>
+
+        <div class="p-4">
+            <!-- Description -->
+            <p class="break-words">
+                {{answer.description}}
+            </p>
+        </div>
+      
+
+        <div>
+            {{--  Date, Delete Button  --}}
+            @!component('components/dateAndDeleteButton',{
+                user: user,
+                routeNameButtonDelete: 'question.destroy',
+                idObjectDeleted: question.id,
+                date: date
+            })
+        </div>
+
+    </div>
 @end
