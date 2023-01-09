@@ -47,3 +47,7 @@ Route.group(() => {
   Route.get('/pergunta/:id', 'QuestionsController.show').as('question.show')
   Route.get('/pergunta/:id/delete', 'QuestionsController.destroy').as('question.destroy')
 }).middleware('auth')
+
+Route.group(() => {
+  Route.post('/responder/:id', 'AnswersController.store').as('answer.store')
+})

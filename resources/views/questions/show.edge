@@ -112,23 +112,23 @@
             text: "Responder"
         })
 
-        <form action="{{ route('question.store') }}" method="POST">
+        <form action="{{ route('answer.store', {id: question.id}) }}" method="POST">
 
-            @!textarea({
-                label: 'Título',
-                placeholder: 'Digite o título da resposta',
-                name: 'question',
-                rows:'1',
-                minLength:'3',
-                maxLength: '240'
-            })
-        
             @!textarea({
                 label: 'Descrição',
                 name: 'description',
                 placeholder: 'Digite a descrição da resposta',
                 rows:'5',
+                minLength: '1',
                 maxLength: '2048'
+            })
+
+            @!textarea({
+                label: 'Fonte',
+                placeholder: 'Digite a fonte',
+                name: 'source',
+                rows:'1',
+                maxLength: '240'
             })
         
             <div class="flex flex-row-reverse">
