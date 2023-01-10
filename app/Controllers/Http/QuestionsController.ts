@@ -30,12 +30,22 @@ export default class QuestionsController {
   }
 
   public async show({ params, view }: HttpContextContract) {
-    const quest = await Question.findOrFail(params.id)
-    const user = await User.findOrFail(quest.userId)
-    const categ = await Category.find(quest.categoryId) || null
-    const date  = quest.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' hh':'mm")
+    const question = await Question.findOrFail(params.id)
+    const user = await User.findOrFail(question.userId)
+    const category = await Category.find(question.categoryId) || null
+    const date  = question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' hh':'mm")
 
-    return view.render('questions/show', { question: quest , user, date, category: categ})
+    await question.load('answers')
+    const answers = question.answers
+
+    let answerDate, answer
+    for(answer of answers){
+      await answer.load('user')
+      answerDate = answer.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' hh':'mm")
+      answer = Object.assign(answer, {user: answer.user, date: answerDate})
+    }
+
+    return view.render('questions/show', {question, user, date, category, answers})
   }
 
   public async destroy({params, response, auth} : HttpContextContract){

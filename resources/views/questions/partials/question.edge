@@ -1,0 +1,55 @@
+{{--  Title  --}}
+<div>
+    <!-- Title -->
+    <p class="text-4xl font-bold break-words">{{ question.question }}</p>
+</div>
+
+{{--  Date, Delete Button  --}}
+@!component('components/dateAndDeleteButton',{
+    user: user,
+    routeNameButtonDelete: 'question.destroy',
+    idObjectDeleted: question.id,
+    date: date,
+    deleteMessage: 'Tem certeza que deseja excluir a sua pergunta?'
+})
+
+{{-- Image, Username--}}
+@!component('components/imageAndUsername', {
+    username: user.name
+})
+
+{{-- Category, Votes --}}
+<div class="flex justify-between">
+
+    <div>
+        <!-- Category -->
+        <label class="label">
+            <span class="label-text"> 
+                <p class="font-sans font-bold text-base">
+                    Categoria:
+                    <a class="hover:underline" href="">{{ category ? category.name : 'Não especificado' }}</a> 
+                </p>    
+            </span>
+        </label>
+    </div>
+
+    <div>
+        <!-- Votes -->
+        @!component('components/votes',{
+            votes:'-2'
+        })
+    </div>
+
+</div>
+
+{{-- Description --}}
+@if(question.description)
+
+    <div class="p-4">
+        <!-- Description -->
+        <p class="break-words">
+            {{ question.description}}
+        </p>
+    </div>
+
+@endif
