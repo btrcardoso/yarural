@@ -1,8 +1,6 @@
 @layout('layouts/main')
 @set('title','Yarural | Editar Perfil')
 
-
-
 @section('body')
 
     <form action="{{ route('user.update') }}" method="POST">
@@ -63,7 +61,7 @@
                     <button type="submit" class="btn btn-secondary"> Salvar </button>
                 </div>
                 <div class="py-3">
-                    <a href="{{route('user.show')}}" class="btn btn-secondary btn-outline"> Cancelar </a>
+                    <a href="{{ route('user.show', {username: auth.user.username}) }}" class="btn btn-secondary btn-outline"> Cancelar </a>
                 </div> 
             </div>
 
