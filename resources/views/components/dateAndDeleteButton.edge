@@ -4,9 +4,9 @@
 
         <div class="self-end">
             <!-- Delete -->
-            <a class="btn btn-square btn-xs btn-ghost" href="{{route(routeNameButtonDelete, {id:idObjectDeleted})}}">
+            <label for="my-modal-{{idObjectDeleted}}" class="btn btn-square btn-xs btn-ghost">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-            </a>
+            </label>
         </div>
 
         <div class="self-end">
@@ -27,7 +27,20 @@
 
 </div>
 
-
+<!-- Modal Delete -->
+<input type="checkbox" id="my-modal-{{idObjectDeleted}}" class="modal-toggle" />
+<div class="modal cursor-pointer">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">Excluir resposta</h3>
+        <p class="py-4">Tem certeza que deseja excluir a sua resposta?</p>
+        <div class="modal-action">
+            <label for="my-modal" class="btn btn-primary">Cancelar</label>
+            <a class="btn btn-error" href="{{route(routeNameButtonDelete, {id:idObjectDeleted})}}">
+                Excluir
+            </a>
+        </div>
+    </div>
+</div>
 
 
 
