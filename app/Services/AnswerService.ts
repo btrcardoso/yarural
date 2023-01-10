@@ -9,10 +9,16 @@ export default class AnswerService{
         return answer
     }
 
-    public static async destroyAnswer(id : number){
+    public static async destroyAnswer(answerId : number, authId : number){
 
-        const answer = await Answer.findOrFail(id)
-        answer.delete()
+        const answer = await Answer.findOrFail(answerId)
+        const questionId = answer.questionId
+
+        if(answer.userId == authId){
+            answer.delete()
+        }
+
+        return questionId
 
     }
 
