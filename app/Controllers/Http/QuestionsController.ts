@@ -38,6 +38,13 @@ export default class QuestionsController {
     await question.load('answers')
     const answers = question.answers
 
+    let answerDate, answer
+    for(answer of answers){
+      await answer.load('user')
+      answerDate = answer.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' hh':'mm")
+      answer = Object.assign(answer, {user: answer.user, date: answerDate})
+    }
+
     return view.render('questions/show', {question, user, date, category, answers})
   }
 

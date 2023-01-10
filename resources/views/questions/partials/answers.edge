@@ -8,7 +8,7 @@
         <div class="flex justify-between">
             <!-- Image and username -->
             @!component('components/imageAndUsername', {
-                username: answer.userId
+                username: answer.user.name
             })
 
             <!-- Votes -->
@@ -25,14 +25,25 @@
         </div>
       
 
-        <div>
-            {{--  Date, Delete Button  --}}
-            @!component('components/dateAndDeleteButton',{
-                user: {id: answer.userId},
-                routeNameButtonDelete: 'answer.destroy',
-                idObjectDeleted: answer.id,
-                date: answer.createdAt
-            })
+        <div class="flex justify-between">
+            
+            <div>
+                <!-- Source -->
+                <label class="label">
+                    <span class="label-text-alt">Fonte: {{ answer.source ? answer.source : 'Não especificada' }}</span>
+                </label>
+            </div>
+
+            <div>
+                {{--  Date, Delete Button  --}}
+                @!component('components/dateAndDeleteButton',{
+                    user: {id: answer.userId},
+                    routeNameButtonDelete: 'answer.destroy',
+                    idObjectDeleted: answer.id,
+                    date: answer.date
+                })
+            </div>
+            
         </div>
 
     </div>
