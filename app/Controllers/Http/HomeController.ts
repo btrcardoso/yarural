@@ -3,10 +3,14 @@ import Question from 'App/Models/Question'
 
 export default class HomeController {
 
-    public async index({ auth, view }: HttpContextContract){
+    public async index({ request, auth, view }: HttpContextContract){
         if (auth.use('web').isLoggedIn){
+            const page = request.input('page', 1)
+            const limit = 10
 
-            const questions = await Question.query().orderBy('created_at', 'desc').paginate(1,10)
+            const questions = await Question.query().orderBy('created_at', 'desc').paginate(page, limit)
+
+            //questions.baseUrl('/questions')
 
             return view.render('home/loggedInHome', {questions: questions})
         }

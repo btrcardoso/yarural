@@ -40,3 +40,11 @@
     </div>
 
 @endeach
+<br>
+<div class="btn-group" >
+    @each(anchor in questions.getUrlsForRange(1, questions.lastPage))
+      <a  role="button" href="{{ anchor.url }}" class="btn btn-md"">
+        {{ anchor.page }}
+      </a>
+    @endeach
+</div>
