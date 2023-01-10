@@ -4,7 +4,11 @@
     <span class="label-text  font-medium">{{label?label:''}}</span>
     </label>
 
-    <select class="select select-bordered" name="{{name ? name : ''}}">
+    <select class="select select-bordered
+        @if(flashMessages.has(`errors.${name}`))
+            select-error
+        @endif 
+    " name="{{name ? name : ''}}">
 
         <option disabled
             @if(optionSelected == null) 
@@ -27,5 +31,13 @@
         @end
 
     </select>
+
+    @if(flashMessages.has(`errors.${name}`))
+
+        <div class="text-red-600">
+            {{flashMessages.get(`errors.${name}`)}}
+        </div>
+
+    @endif
 
 </div>

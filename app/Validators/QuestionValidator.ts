@@ -14,16 +14,16 @@ export default class QuestionValidator {
       rules.trim(),
       rules.maxLength(2048)
     ]),
-    categoryId: schema.number.nullableAndOptional([
+    categoryId: schema.number([
       rules.exists({table:'categories', column:'id'})
     ])
   })
 
   public messages: CustomMessages = {
-    required: 'A pergunta não pode ser vazia',
+    required: 'O campo não pode ser vazio',
     'question.minLength' : 'A pergunta deve ter pelo menos 3 caracteres',
     'question.maxLength' : 'A pergunta deve ter no máximo 240 caracteres',
     'description.maxLength' : 'A descrição deve ter no máximo 2048 caracteres',
-    'categoryId.exists' : 'Id de categoria inválido'
+    'categoryId.exists' : 'Categoria inválida'
   }
 }
