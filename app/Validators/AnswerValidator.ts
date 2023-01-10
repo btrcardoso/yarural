@@ -11,11 +11,13 @@ export default class AnswerValidator {
     ]),
     source: schema.string.nullable({}, [
       rules.trim(),
+      rules.maxLength(240)
     ])
   })
 
   public messages = {
     required: 'A descrição da resposta não pode ser vazia',
     'description.maxLength' : 'A descrição deve ter no máximo 2048 caracteres.',
+    'source.maxLength' : 'A fonte deve ter no máximo 240 caracteres.',
   }
 }

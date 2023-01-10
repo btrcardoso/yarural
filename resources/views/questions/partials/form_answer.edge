@@ -9,8 +9,8 @@
         name: 'description',
         placeholder: 'Digite a descrição da resposta',
         rows:'5',
-        minLength: '1',
-        maxLength: '2048'
+        maxLength: '2048',
+        value: flashMessages.values ? (flashMessages.values.description != null ? flashMessages.values.description : '') : ''
     })
 
     @!textarea({
@@ -18,7 +18,8 @@
         placeholder: 'Digite a fonte',
         name: 'source',
         rows:'1',
-        maxLength: '240'
+        maxLength: '240',
+        value: flashMessages.values ? (flashMessages.values.source != null ? flashMessages.values.source : '') : ''
     })
 
     <div class="flex flex-row-reverse">
