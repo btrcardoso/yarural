@@ -1,9 +1,41 @@
 @each(question in questions)
 
     <div class="bg-base-100 rounded-lg shadow p-4">
-        <div>
-            <!-- Title -->
-            <a class="text-2 font-bold break-words" href="pergunta/{{ question.id }}">{{ question.question }}</a>
+            <div>
+                <!-- Title -->
+                <a class="text-lg font-bold break-words" href="pergunta/{{ question.id }}">
+                    {{ question.question }}
+                </a>
+
+                <span class="label-text-alt" >
+                    • {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
+                </span>
+
+                <div class="flex items-stretch">
+                    <!-- Votes -->
+                    <div class="self-center">
+                        <a class="btn btn-square btn-xs btn-ghost" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M5 12l7-7 7 7"/></svg>
+                        </a>
+                    </div>
+                    <div class="self-center p-1">
+                        <label class="font-sans font-bold text-base">
+                            -20
+                        </label>
+                    </div>
+                    <div class="self-center">
+                        <a class="btn btn-square btn-xs btn-ghost" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M5 12l7 7 7-7"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            <div class="text-sm font-normal break-words" >
+                {{ question.description?question.description:'' }}
+            </div>
+
+            <a class="btn btn-sm flex-row-reverse size-1" href="pergunta/{{ question.id }}">Responder</a>
+
         </div>
     </div>
 
