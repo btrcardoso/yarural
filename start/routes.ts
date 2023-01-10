@@ -28,7 +28,7 @@ Route.group(() => {
   .as('user')
 
 Route.group(()=>{
-  Route.get('/perfil', 'UserController.show').as('user.show')
+  Route.get('/perfil/ya/:username', 'UserController.show').as('user.show')
   Route.get('/perfil/editar', 'UserController.edit').as('user.edit')
   Route.post('/perfil/editar', 'UserController.update').as('user.update')
 }).middleware('auth:web')
@@ -47,3 +47,8 @@ Route.group(() => {
   Route.get('/pergunta/:id', 'QuestionsController.show').as('question.show')
   Route.get('/pergunta/:id/delete', 'QuestionsController.destroy').as('question.destroy')
 }).middleware('auth')
+
+Route.group(() => {
+  Route.post('/responder/:id', 'AnswersController.store').as('answer.store')
+  Route.get('/resposta/:id/delete', 'AnswersController.destroy').as('answer.destroy')
+})

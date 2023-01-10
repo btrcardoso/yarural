@@ -3,11 +3,11 @@
 
 @section('body')
 
-@!simpletext({
-    text: "Faça uma pergunta:"
-})
+    @!simpletext({
+        text: "Faça uma pergunta:"
+    })
 
-    <div class="min-h-0 bg-base-200 rounded-lg shadow-xl p-4">
+    <div class="bg-base-200 rounded-lg shadow-xl p-4">
     
         <form action="{{ route('question.store') }}" method="POST">
 
@@ -17,7 +17,8 @@
                 name: 'question',
                 rows:'2',
                 minLength:'3',
-                maxLength: '240'
+                maxLength: '240',
+                value: flashMessages.values ? (flashMessages.values.question != null ? flashMessages.values.question : '') : ''        
             })
 
             @!textarea({
@@ -25,14 +26,16 @@
                 name: 'description',
                 placeholder: 'Digite a descrição da pergunta',
                 rows:'5',
-                maxLength: '2048'
+                maxLength: '2048',
+                value: flashMessages.values ? (flashMessages.values.description != null ? flashMessages.values.description : '') : ''        
             })
 
             @!select({
                 label: 'Categoria',
                 name: 'categoryId',
                 options: categories,
-                disabledMesssage: 'Selecione uma categoria'
+                disabledMessage: 'Selecione uma categoria',
+                optionSelected: flashMessages.values ? flashMessages.values.categoryId : null
             })
 
             <div class="flex flex-row-reverse">

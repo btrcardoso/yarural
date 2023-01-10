@@ -33,8 +33,11 @@ export default class UserController {
         return response.redirect().toRoute('auth.create')
     }
 
-    public async show({ view }: HttpContextContract){
-        return view.render('user/profile')
+    public async show({ view, params }: HttpContextContract){
+
+        const user = await User.findByOrFail('username', params.username)
+
+        return view.render('user/profile', {user: user})
     }
 
     public async edit({ view }: HttpContextContract){
@@ -66,7 +69,7 @@ export default class UserController {
 
         user.save()
 
-        return response.redirect().toRoute('user.show')
+        return response.redirect().toRoute('user.show', {username: user.username})
 
     }
 }

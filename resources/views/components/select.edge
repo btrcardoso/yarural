@@ -4,14 +4,40 @@
     <span class="label-text  font-medium">{{label?label:''}}</span>
     </label>
 
-    <select class="select select-bordered" name="{{name ? name : ''}}">
+    <select class="select select-bordered
+        @if(flashMessages.has(`errors.${name}`))
+            select-error
+        @endif 
+    " name="{{name ? name : ''}}">
 
-        <option disabled selected>{{disabledMesssage}}</option>
+        <option disabled
+            @if(optionSelected == null) 
+                selected 
+            @endif
+        >
+            {{disabledMessage}}
+        </option>
 
         @each(option in options)
-            <option value="{{option.id ? option.id : null}}">{{option.name}}</option>
+
+            <option value="{{option.id ? option.id : null}}" 
+                @if(optionSelected == option.id) 
+                    selected 
+                @endif
+            >
+                {{option.name}}
+            </option>
+
         @end
 
     </select>
+
+    @if(flashMessages.has(`errors.${name}`))
+
+        <div class="text-red-600">
+            {{flashMessages.get(`errors.${name}`)}}
+        </div>
+
+    @endif
 
 </div>

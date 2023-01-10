@@ -15,7 +15,7 @@
         "
         minlength="{{minLength ? minLength:''}}"
         maxlength="{{maxLength ? maxLength:''}}"
-    ></textarea>
+    >{{value}}</textarea>
 
     @if(flashMessages.has(`errors.${name}`))
 
