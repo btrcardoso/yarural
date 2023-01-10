@@ -31,10 +31,10 @@
 <input type="checkbox" id="my-modal-{{idObjectDeleted}}" class="modal-toggle" />
 <div class="modal cursor-pointer">
     <div class="modal-box">
-        <h3 class="font-bold text-lg">Excluir resposta</h3>
-        <p class="py-4">Tem certeza que deseja excluir a sua resposta?</p>
+        <h3 class="font-bold text-lg">Excluir</h3>
+        <p class="py-4">{{deleteMessage}}</p>
         <div class="modal-action">
-            <label for="my-modal" class="btn btn-primary">Cancelar</label>
+            <label for="my-modal-{{idObjectDeleted}}" class="btn btn-primary">Cancelar</label>
             <a class="btn btn-error" href="{{route(routeNameButtonDelete, {id:idObjectDeleted})}}">
                 Excluir
             </a>
