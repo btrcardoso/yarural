@@ -5,6 +5,7 @@ import User from 'App/Models/User'
 import ProfileValidator from 'App/Validators/ProfileValidator'
 import UserValidator from 'App/Validators/UserValidator'
 import UsernameValidator from 'App/Validators/UsernameValidator'
+import Question from 'App/Models/Question'
 
 export default class UserController {
 
@@ -33,11 +34,17 @@ export default class UserController {
         return response.redirect().toRoute('auth.create')
     }
 
-    public async show({ view, params }: HttpContextContract){
+    public async show({ view, params, request }: HttpContextContract){
+
+        const page = request.input('page', 1)
+        const limit = 1
 
         const user = await User.findByOrFail('username', params.username)
 
-        return view.render('user/profile', {user: user})
+        const questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
+        questions.baseUrl('/perfil/ya/' + user.username)
+
+        return view.render('user/profile', {user: user, questions: questions})
     }
 
     public async edit({ view }: HttpContextContract){

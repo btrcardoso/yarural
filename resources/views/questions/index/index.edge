@@ -31,10 +31,17 @@
 
 @endeach
 
-<div class="btn-group p-1 m-1" >
-    @each(anchor in questions.getUrlsForRange(1, questions.lastPage))
-      <a  role="button" href="{{ anchor.url }}" class="btn btn-md"">
-        {{ anchor.page }}
-      </a>
-    @endeach
-</div>
+@if(questions.length > 0)
+    <div class="btn-group p-1 m-1" >
+        @each(anchor in questions.getUrlsForRange(1, questions.lastPage))
+        <a  role="button" href="{{ anchor.url }}" class="btn btn-md">
+            {{ anchor.page }}
+        </a>
+        @endeach
+    </div>
+@else
+    <div class="flex justify-center m-4">
+        Não há perguntas!
+    </div>
+
+@end
