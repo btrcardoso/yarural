@@ -55,6 +55,6 @@ export default class QuestionsController {
       await QuestionService.destroyQuestion(quest.id)
     }
     
-    return response.redirect().toRoute('user.show')
+    return response.redirect().toRoute('home.index')
   }
 }
