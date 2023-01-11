@@ -8,9 +8,7 @@ export default class HomeController {
             const page = request.input('page', 1)
             const limit = 10
 
-            const questions = await Question.query().orderBy('created_at', 'desc').paginate(page, limit)
-
-            //questions.baseUrl('/questions')
+            const questions = await Question.query().preload('user').orderBy('created_at', 'desc').paginate(page, limit)
 
             return view.render('home/loggedInHome', {questions: questions})
         }
