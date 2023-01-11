@@ -4,7 +4,7 @@
         <div class="flex justify-between">
             <!-- Title -->
             <div>
-                <a class="text-lg font-bold break-words" href="pergunta/{{ question.id }}">
+                <a class="text-lg font-bold break-words" href="{{ route('question.show', {id: question.id}) }}">
                     {{ question.question }}
                 </a>
 
@@ -17,15 +17,16 @@
                 @!component('components/votes', {votes: 10})
             </div>
         </div>
+        @if(question.user)
+            <div class="flex justify-between">
+                @!component('components/imageAndUsername', {username: question.user.username})
 
-        <div class="flex justify-between">
-            @!component('components/imageAndUsername', {username: question.user.username})
-
-            <div>
-                <a class="btn btn-sm size-1" href="pergunta/{{ question.id }}">Responder</a>
+                <div>
+                    <a class="btn btn-sm size-1" href="{{ route('question.show', {id: question.id}) }}">Responder</a>
+                </div>
+                
             </div>
-            
-        </div>
+        @end
     </div>
 
 @endeach
