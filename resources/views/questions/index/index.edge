@@ -1,30 +1,36 @@
 @each(question in questions)
 
-    <div class="bg-base-100 rounded-lg shadow p-4">
-        <div>
+    <div class="bg-base-100 rounded-lg shadow p-4 m-2">
+        <div class="flex justify-between">
             <!-- Title -->
-            <a class="text-lg font-bold break-words" href="pergunta/{{ question.id }}">
-                {{ question.question }}
-            </a>
+            <div>
+                <a class="text-lg font-bold break-words" href="pergunta/{{ question.id }}">
+                    {{ question.question }}
+                </a>
 
-            <span class="label-text-alt" >
-                • {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
-            </span>
-
-            <div class="flex justify-between">
-                @!component('components/imageAndUsername', {username: question.user.username})
-
-                @!component('components/votes', {votes: 10})
+                <span class="label-text-alt" >
+                    • {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
+                </span>
             </div>
 
-            <a class="btn btn-sm flex-row-reverse size-1" href="pergunta/{{ question.id }}">Responder</a>
+            <div class="flex justify-between">
+                @!component('components/votes', {votes: 10})
+            </div>
+        </div>
 
+        <div class="flex justify-between">
+            @!component('components/imageAndUsername', {username: question.user.username})
+
+            <div>
+                <a class="btn btn-sm size-1" href="pergunta/{{ question.id }}">Responder</a>
+            </div>
+            
         </div>
     </div>
 
 @endeach
-<br>
-<div class="btn-group" >
+
+<div class="btn-group p-1 m-1" >
     @each(anchor in questions.getUrlsForRange(1, questions.lastPage))
       <a  role="button" href="{{ anchor.url }}" class="btn btn-md"">
         {{ anchor.page }}
