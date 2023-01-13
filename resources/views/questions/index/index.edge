@@ -7,19 +7,34 @@
                 <a class="text-lg font-bold break-words" href="{{ route('question.show', {id: question.id}) }}">
                     {{ question.question }}
                 </a>
+                @if(!question.user)
+                    <span class="label-text-alt" >
+                        • {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
+                    </span>
+                @end
 
-                <span class="label-text-alt" >
-                    • {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
-                </span>
             </div>
 
             <div class="flex justify-between">
                 @!component('components/votes', {votes: 10})
             </div>
         </div>
+        
         @if(question.user)
+
             <div class="flex justify-between">
-                @!component('components/imageAndUsername', {username: question.user.username})
+
+                <div class="flex">
+
+                    @!component('components/imageAndUsername', {username: question.user.username})
+                    
+                    <label class="label">
+                        <span class="label-text-alt">
+                            • {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
+                        </span>
+                    </label>
+                </div>
+
 
                 <div>
                     <a class="btn btn-sm size-1" href="{{ route('question.show', {id: question.id}) }}">Responder</a>
