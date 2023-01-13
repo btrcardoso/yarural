@@ -37,7 +37,7 @@ export default class UserController {
     public async show({ view, params, request }: HttpContextContract){
 
         const page = request.input('page', 1)
-        const limit = 1
+        const limit = 10
 
         const user = await User.findByOrFail('username', params.username)
 

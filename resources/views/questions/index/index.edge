@@ -3,15 +3,11 @@
     <div class="bg-base-100 rounded-lg shadow p-4 m-2">
         <div class="flex justify-between">
             <!-- Title -->
-            <div>
-                <a class="text-lg font-bold break-words" href="{{ route('question.show', {id: question.id}) }}">
+            <div class="truncate">
+
+                <a class="text-lg font-bold" href="{{ route('question.show', {id: question.id}) }}">
                     {{ question.question }}
                 </a>
-                @if(!question.user)
-                    <span class="label-text-alt" >
-                        • {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
-                    </span>
-                @end
 
             </div>
 
@@ -19,6 +15,12 @@
                 @!component('components/votes', {votes: 10})
             </div>
         </div>
+
+        @if(!question.user)
+            <span class="label-text-alt" >
+                {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
+            </span>
+        @end
         
         @if(question.user)
 
@@ -27,14 +29,13 @@
                 <div class="flex">
 
                     @!component('components/imageAndUsername', {username: question.user.username})
-                    
+
                     <label class="label">
                         <span class="label-text-alt">
                             • {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
                         </span>
                     </label>
                 </div>
-
 
                 <div>
                     <a class="btn btn-sm size-1" href="{{ route('question.show', {id: question.id}) }}">Responder</a>
