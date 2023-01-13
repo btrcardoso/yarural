@@ -1,0 +1,63 @@
+@each(question in questions)
+
+    <div class="bg-base-100 rounded-lg shadow p-4 m-2">
+        <div class="flex justify-between">
+            <!-- Title -->
+            <div class="truncate">
+
+                <a class="text-lg font-bold" href="{{ route('question.show', {id: question.id}) }}">
+                    {{ question.question }}
+                </a>
+
+            </div>
+
+            <div class="flex justify-between">
+                @!component('components/votes', {votes: 10})
+            </div>
+        </div>
+
+        @if(!question.user)
+            <span class="label-text-alt" >
+                {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
+            </span>
+        @end
+        
+        @if(question.user)
+
+            <div class="flex justify-between">
+
+                <div class="flex">
+
+                    @!component('components/imageAndUsername', {username: question.user.username})
+
+                    <label class="label">
+                        <span class="label-text-alt">
+                            • {{ question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
+                        </span>
+                    </label>
+                </div>
+
+                <div>
+                    <a class="btn btn-sm size-1" href="{{ route('question.show', {id: question.id}) }}">Responder</a>
+                </div>
+                
+            </div>
+        @end
+    </div>
+
+@endeach
+
+@if(questions.length > 0)
+    <div class="btn-group p-1 m-1" >
+        @each(anchor in questions.getUrlsForRange(1, questions.lastPage))
+        <a  role="button" href="{{ anchor.url }}" class="btn btn-md">
+            {{ anchor.page }}
+        </a>
+        @endeach
+    </div>
+@else
+    <div class="flex justify-center m-4">
+        Não há perguntas!
+    </div>
+
+@end

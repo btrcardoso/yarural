@@ -41,7 +41,7 @@ export default class QuestionsController {
     let answerDate, answer
     for(answer of answers){
       await answer.load('user')
-      answerDate = answer.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' hh':'mm")
+      answerDate = answer.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm")
       answer = Object.assign(answer, {user: answer.user, date: answerDate})
     }
 
@@ -55,6 +55,6 @@ export default class QuestionsController {
       await QuestionService.destroyQuestion(quest.id)
     }
     
-    return response.redirect().toRoute('user.show')
+    return response.redirect().toRoute('home.index')
   }
 }
