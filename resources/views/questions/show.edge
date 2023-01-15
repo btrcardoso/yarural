@@ -11,13 +11,14 @@
 
     <div class="bg-base-100 rounded-b-lg shadow p-4">
 
-        @include('questions/partials/form_answer')
+        @include('answers/partials/answerForm')
 
     </div>
 
     <div>
 
-        @includeIf(answers, 'questions/partials/answers')
+        <p class="font-sans font-bold text pt-4">Respostas</p>
+        @include('answers/partials/questionAnswers')
         
     </div>
 
