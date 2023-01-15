@@ -14,6 +14,8 @@ export default class UsernameValidator {
     username: schema.string({}, [
       rules.minLength(3),
       rules.maxLength(15),
+      rules.trim(),
+      rules.regex(/^[a-z0-9_]+$/)
     ]),
     description: schema.string.nullable([
       rules.trim(),
@@ -29,5 +31,6 @@ export default class UsernameValidator {
     'username.minLength': 'Username deve ter pelo menos 3 letras',
     'username.maxLength': 'Username não pode ter mais de 15 letras',
     'username.unique': 'Username já cadastrado',
+    'username.regex' : 'Apenas letras minúsculas, números e underline são permitidos',
   }
 }
