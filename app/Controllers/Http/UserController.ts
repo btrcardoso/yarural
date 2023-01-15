@@ -6,6 +6,7 @@ import ProfileValidator from 'App/Validators/ProfileValidator'
 import UserValidator from 'App/Validators/UserValidator'
 import UsernameValidator from 'App/Validators/UsernameValidator'
 import Question from 'App/Models/Question'
+import Answer from 'App/Models/Answer'
 
 export default class UserController {
 
@@ -44,7 +45,16 @@ export default class UserController {
         const questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
         questions.baseUrl('/perfil/ya/' + user.username)
 
-        return view.render('user/profile', {user: user, questions: questions})
+        const answers = await Answer.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
+
+        let answer
+        for(answer of answers){
+            await answer.load('question')
+            await answer.question.load('user')
+            answer = Object.assign(answer, {question: answer.question, questionUser: answer.question.user})
+        }
+
+        return view.render('user/profile', {user, questions, answers})
     }
 
     public async edit({ view }: HttpContextContract){
