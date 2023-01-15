@@ -41,7 +41,7 @@ export default class UserValidator {
     'username.minLength': 'Username deve ter pelo menos 3 letras',
     'username.maxLength': 'Username não pode ter mais de 15 letras',
     'username.unique': 'Username já cadastrado',
-    'username.alphaNum' : 'Caracteres Inválidos',
+    'username.alphaNum' : 'Apenas letras, números, underline e hífen são permitidos',
     'password.minLength': 'Mínimo de três caracteres',
     'email.unique': 'E-mail já cadastrado',
     'email.email': 'E-mail inválido',
