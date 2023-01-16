@@ -46,12 +46,10 @@ export default class UserController {
         questions.baseUrl('/perfil/ya/' + user.username)
 
         const answers = await Answer.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
-
-        let answer
-        for(answer of answers){
+        
+        for(let answer of answers){
             await answer.load('question')
             await answer.question.load('user')
-            answer = Object.assign(answer, {question: answer.question, questionUser: answer.question.user})
         }
 
         return view.render('user/profile', {user, questions, answers})

@@ -2,48 +2,7 @@
     <br>
     <div class="bg-base-200 rounded shadow p-4">
 
-        <div class="flex justify-between">
-            <!-- Image and username -->
-            @!component('components/imageAndUsername', {
-                username: answer.user.name
-            })
-
-            <!-- Votes -->
-            @!component('components/votes',{
-                votes:'-2'
-            })
-        </div>
-
-        <div class="p-4">
-            <!-- Description -->
-            <p class="break-words">
-                {{answer.description}}
-            </p>
-        </div>
-      
-
-        <div class="flex justify-between">
-            
-            <div>
-                <!-- Source -->
-                <label class="label">
-                    <span class="label-text-alt">Fonte: {{ answer.source ? answer.source : 'Não especificada' }}</span>
-                </label>
-            </div>
-
-            <div>
-                {{--  Date, Delete Button  --}}
-                @!component('components/dateAndDeleteButton',{
-                    user: {id: answer.userId},
-                    routeNameButtonDelete: 'answer.destroy',
-                    idObjectDeleted: answer.id,
-                    date: answer.date,
-                    deleteMessage: 'Tem certeza que deseja excluir a sua resposta?',
-                    modalName: 'answer'
-                })
-            </div>
-            
-        </div>
+        @include('answers/partials/detailedAnswer')
 
     </div>
 @end

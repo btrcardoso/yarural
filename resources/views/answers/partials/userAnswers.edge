@@ -3,48 +3,18 @@
     <div class="m-2">
 
         <div class="bg-base-100 rounded-t-lg shadow p-4">
-            <div class="truncate">
-                {{answer.description}}
-            </div>
-    
-            <label class="label">
-                <span class="label-text-alt">
-                    {{ answer.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
-                </span>
-            </label>
+
+            @!component('answers/components/answer', {
+                answer: answer
+            })
+            
         </div>
     
         <div class="bg-base-200 rounded-b-lg shadow p-4">
-            <div class="flex justify-between">
-                <!-- Title -->
-                <div class="truncate">
-    
-                    <a class="text-lg font-bold hover:underline" href="{{ route('question.show', {id: answer.question.id}) }}">
-                        {{ answer.question.question }}
-                    </a>
-    
-                </div>
-    
-                <div class="flex justify-between">
-                    @!component('components/votes', {votes: 10})
-                </div>
-            </div>
-    
-            <div class="flex justify-between">
-    
-                <div class="flex">
-    
-                    @!component('components/imageAndUsername', {username: answer.questionUser.username})
-    
-                    <label class="label">
-                        <span class="label-text-alt">
-                            • {{ answer.question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
-                        </span>
-                    </label>
-    
-                </div>
-                
-            </div>
+
+            @!component('questions/components/question', {
+                question: answer.question
+            })
     
         </div>
 
