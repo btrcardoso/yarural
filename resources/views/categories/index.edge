@@ -5,7 +5,7 @@
     <div>
 
         @each(category in categories)
-            <div>
+            <div class="focus-visible:ring hover:bg-white flex">
                 <a href="{{ route('category.show', {id: category.id}) }}">{{category.name}}</a>
             </div>
         @end
