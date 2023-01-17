@@ -53,4 +53,7 @@ Route.group(() => {
   Route.get('/resposta/:id/delete', 'AnswersController.destroy').as('answer.destroy')
 })
 
-Route.get('/categorias', 'CategoriesController.index').as('category.index').middleware('auth')
+Route.group(() => {
+  Route.get('/', 'CategoriesController.index').as('index')
+  Route.get('/:id', 'CategoriesController.show').as('show')
+}).prefix('/categorias').as('category').middleware('auth')

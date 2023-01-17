@@ -1,6 +1,15 @@
 @layout('layouts/main')
-@set('title','Yarural')
+@set('title','Yarural | Categorias')
 @set('category', true)
 @section('body')
-    hehe
+    <div>
+
+        @each(category in categories)
+            <div>
+                <a href="{{ route('category.show', {id: category.id}) }}">{{category.name}}</a>
+            </div>
+        @end
+
+    </div>
+
 @end
