@@ -12,6 +12,15 @@ export default class extends BaseSeeder {
       }, 
       {
         name: 'Matrícula'
+      },
+      {
+        name: 'Outros'
+      },
+      {
+        name: 'Matérias'
+      },
+      {
+        name: 'TCC'
       }
     ])
   }
