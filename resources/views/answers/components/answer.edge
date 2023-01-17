@@ -1,0 +1,20 @@
+<div class="flex justify-between">
+    
+    <div class="truncate">
+        <!-- Answer description -->
+        {{answer.description}}
+    </div>
+
+    <div>
+        <!-- Answer votes -->
+        @!component('components/votes', {votes: 25})
+    </div>
+
+</div>
+
+<label class="label">
+    <span class="label-text-alt">
+        {{ answer.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm") }}
+    </span>
+</label>
+

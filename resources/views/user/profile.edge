@@ -37,11 +37,30 @@
     
     <div class="flex flex-col p-1 items-center justify-center">
         <div class="tabs">
-            <a class="tab tab-lg tab-bordered tab-active ">Perguntas</a> 
-            <a class="tab tab-lg tab-bordered ">Respostas</a>
+
+            <a href="{{ route('user.show', {username:user.username}) }}" 
+                class="tab tab-lg tab-bordered 
+                @if(questions)
+                    tab-active
+                @endif
+            ">
+                Perguntas
+            </a> 
+
+            <a href="{{ route('user.showAnswers', {username:user.username}) }}" 
+                class="tab tab-lg tab-bordered 
+                @if(answers)
+                    tab-active
+                @endif
+            ">
+                Respostas
+            </a> 
+
         </div>
     </div>
     
-    @!include('questions/index/index')
+    @!includeIf(questions, 'questions/partials/questions')
+
+    @!includeIf(answers, 'answers/partials/userAnswers')
     
 @end
