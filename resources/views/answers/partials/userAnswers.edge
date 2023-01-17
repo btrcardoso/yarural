@@ -22,9 +22,9 @@
 
 @endeach
 
-{{--  @if(questions.length > 0)
+@if(answers.length > 0)
     <div class="btn-group p-1 m-1" >
-        @each(anchor in questions.getUrlsForRange(1, questions.lastPage))
+        @each(anchor in answers.getUrlsForRange(1, answers.lastPage))
         <a  role="button" href="{{ anchor.url }}" class="btn btn-md">
             {{ anchor.page }}
         </a>
@@ -32,7 +32,7 @@
     </div>
 @else
     <div class="flex justify-center m-4">
-        Não há perguntas!
+        Não há respostas!
     </div>
 
-@end  --}}
+@end

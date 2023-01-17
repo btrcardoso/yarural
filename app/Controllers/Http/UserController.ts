@@ -45,14 +45,25 @@ export default class UserController {
         const questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
         questions.baseUrl('/perfil/ya/' + user.username)
 
+        return view.render('user/profile', {user, questions})
+    }
+
+    public async showAnswers({view, params, request}: HttpContextContract){
+
+        const page = request.input('page', 1)
+        const limit = 10
+
+        const user = await User.findByOrFail('username', params.username)
+
         const answers = await Answer.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
-        
+        answers.baseUrl('/perfil/ya/' + user.username + '/respostas')
+
         for(let answer of answers){
             await answer.load('question')
             await answer.question.load('user')
         }
 
-        return view.render('user/profile', {user, questions, answers})
+        return view.render('user/profile', {user, answers})
     }
 
     public async edit({ view }: HttpContextContract){
