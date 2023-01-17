@@ -52,3 +52,5 @@ Route.group(() => {
   Route.post('/responder/:id', 'AnswersController.store').as('answer.store')
   Route.get('/resposta/:id/delete', 'AnswersController.destroy').as('answer.destroy')
 })
+
+Route.get('/categorias', 'CategoriesController.index').as('category.index').middleware('auth')
