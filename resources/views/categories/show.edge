@@ -1,1 +1,8 @@
-hehehe
+@layout('layouts/main')
+@set('title',`Yarural | Categoria ${category.name}`)
+@set('category', true)
+@section('body')
+
+    @include('questions/index/index')
+
+@end

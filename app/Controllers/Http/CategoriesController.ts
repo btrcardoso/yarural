@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Category from 'App/Models/Category'
+import Question from 'App/Models/Question'
 
 export default class CategoriesController {
 
@@ -10,9 +11,14 @@ export default class CategoriesController {
         return view.render('categories/index', {categories: categories})
     }
 
-    public async show({ view }: HttpContextContract){
+    public async show({ view, params, request }: HttpContextContract){
+        const page = request.input('page', 1)
+        const limit = 10
 
-        return view.render('categories/show')
+        const questions = await Question.query().where('categoryId', params.id).orderBy('createdAt', 'desc').paginate(page, limit)
+        const category = await Category.find(params.id)
+
+        return view.render('categories/show', {questions: questions, category: category})
     }
 
 }
