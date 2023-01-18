@@ -29,6 +29,7 @@ Route.group(() => {
 
 Route.group(()=>{
   Route.get('/perfil/ya/:username', 'UserController.show').as('user.show')
+  Route.get('/perfil/ya/:username/respostas', 'UserController.showAnswers').as('user.showAnswers')
   Route.get('/perfil/editar', 'UserController.edit').as('user.edit')
   Route.post('/perfil/editar', 'UserController.update').as('user.update')
 }).middleware('auth:web')

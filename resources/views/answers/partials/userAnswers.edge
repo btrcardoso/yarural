@@ -1,0 +1,38 @@
+@each(answer in answers)
+
+    <div class="m-2">
+
+        <div class="bg-base-200 rounded-t-lg shadow p-4">
+
+            @!component('answers/components/answer', {
+                answer: answer
+            })
+            
+        </div>
+    
+        <div class="bg-base-100 rounded-b-lg shadow p-4">
+
+            @!component('questions/components/question', {
+                question: answer.question
+            })
+    
+        </div>
+
+    </div>
+
+@endeach
+
+@if(answers.length > 0)
+    <div class="btn-group p-1 m-1" >
+        @each(anchor in answers.getUrlsForRange(1, answers.lastPage))
+        <a  role="button" href="{{ anchor.url }}" class="btn btn-md">
+            {{ anchor.page }}
+        </a>
+        @endeach
+    </div>
+@else
+    <div class="flex justify-center m-4">
+        Não há respostas!
+    </div>
+
+@end
