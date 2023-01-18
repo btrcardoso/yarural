@@ -16,7 +16,7 @@ export default class CategoriesController {
         const limit = 10
 
         const questions = await Question.query().where('categoryId', params.id).preload('user').orderBy('createdAt', 'desc').paginate(page, limit)
-        const category = await Category.find(params.id)
+        const category = await Category.findOrFail(params.id)
 
         return view.render('categories/show', {questions: questions, category: category})
     }

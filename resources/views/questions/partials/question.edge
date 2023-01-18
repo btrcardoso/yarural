@@ -28,7 +28,7 @@
             <span class="label-text"> 
                 <p class="font-sans font-bold text-base">
                     Categoria:
-                    <a class="hover:underline" href="">{{ category ? category.name : 'Não especificado' }}</a> 
+                    <a class="hover:underline" href="{{ route('category.show', {id: category.id}) }}">{{ category ? category.name : 'Não especificado' }}</a> 
                 </p>    
             </span>
         </label>
