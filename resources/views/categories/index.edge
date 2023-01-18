@@ -2,10 +2,10 @@
 @set('title','Yarural | Categorias')
 @set('categoryActive', true)
 @section('body')
-    <div>
+    <div class="grid grid-rows-30 grid-flow-col gap-3">
 
         @each(category in categories)
-            <div class="focus-visible:ring hover:bg-white flex">
+            <div class="focus-visible:ring hover:text-sky-500 hover:bg-white">
                 <a href="{{ route('category.show', {id: category.id}) }}">{{category.name}}</a>
             </div>
         @end
