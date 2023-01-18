@@ -3,7 +3,10 @@ import Category from 'App/Models/Category'
 
 export default class extends BaseSeeder {
   public async run () {
-    await Category.createMany([
+    
+    const uniqueKey = 'name'
+
+    await Category.updateOrCreateMany(uniqueKey, [
       {
         name: 'Secretaria'
       },
@@ -12,6 +15,27 @@ export default class extends BaseSeeder {
       }, 
       {
         name: 'Matrícula'
+      },
+      {
+        name: 'Outros'
+      },
+      {
+        name: 'Matérias'
+      },
+      {
+        name: 'TCC'
+      },
+      {
+        name: 'Iniciação Científica'
+      },
+      {
+        name: 'PPC'
+      },
+      {
+        name: 'Horas Complementares'
+      },
+      {
+        name: 'Faltas'
       }
     ])
   }

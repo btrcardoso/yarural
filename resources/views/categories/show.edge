@@ -1,0 +1,12 @@
+@layout('layouts/main')
+@set('title',`Yarural | Categoria ${category.name}`)
+@set('categoryActive', true)
+@section('body')
+
+    <div class="text-center underline text-xl">
+        Perguntas sobre {{ category.name }}:
+    </div>
+
+    @!include('questions/partials/questions')
+
+@end

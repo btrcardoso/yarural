@@ -8,7 +8,7 @@ import QuestionValidator from 'App/Validators/QuestionValidator'
 export default class QuestionsController {
   public async create({ view }: HttpContextContract) {
 
-    const categories = await Category.all();
+    const categories = await Category.query().orderBy('name');
 
     return view.render('questions/create', {categories})
   }
