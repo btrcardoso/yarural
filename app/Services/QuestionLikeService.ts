@@ -2,10 +2,16 @@ import QuestionLike from "App/Models/QuestionLike"
 
 export default class QuestionLikeService{
 
-    public static async createQuestionLike(userId : number, questionId : number, value : 1 | -1){
-        const questionLike = await QuestionLike.create({userId, questionId, value})
-        await questionLike.save()
-        return questionLike
+    public static async like(userId : number, questionId : number){
+        const searchPayload = {userId, questionId}
+        const persistancePayload = {value: 1}
+        await QuestionLike.updateOrCreate(searchPayload, persistancePayload)
+    }
+
+    public static async dislike(userId : number, questionId : number){
+        const searchPayload = {userId, questionId}
+        const persistancePayload = {value: -1}
+        await QuestionLike.updateOrCreate(searchPayload, persistancePayload)
     }
 
     public static async destroyQuestionLike(questionLikeId : number, authId : number){

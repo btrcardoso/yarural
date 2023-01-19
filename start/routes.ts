@@ -58,3 +58,8 @@ Route.group(() => {
   Route.get('/', 'CategoriesController.index').as('index')
   Route.get('/:id', 'CategoriesController.show').as('show')
 }).prefix('/categorias').as('category').middleware('auth')
+
+Route.group(() => {
+  Route.get('like_pergunta/:questionId', 'QuestionLikesController.like').as('question_like.like')
+  Route.get('dislike_pergunta/:questionId', 'QuestionLikesController.dislike').as('question_like.dislike')
+}).middleware('auth')

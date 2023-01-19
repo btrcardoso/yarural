@@ -54,3 +54,7 @@
     </div>
 
 @endif
+
+  
+<a href="{{ route('question_like.like', {questionId: question.id}) }}">curtir</a>
+<a href="{{ route('question_like.dislike', {questionId: question.id}) }}">descurtir</a>  

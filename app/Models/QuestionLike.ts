@@ -20,7 +20,7 @@ export default class QuestionLike extends BaseModel {
   public question: BelongsTo<typeof Question>
 
   @column()
-  public value: 1 | -1
+  public value: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
