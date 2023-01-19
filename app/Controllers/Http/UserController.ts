@@ -46,8 +46,6 @@ export default class UserController {
         let questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
         questions.baseUrl('/perfil/ya/' + user.username)
 
-        console.log(questions)
-
         for(let question of questions){
             let likes = await QuestionService.countLikes(question)
             question = Object.assign(question, {likes})
