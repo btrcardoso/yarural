@@ -16,6 +16,8 @@ export default class AnswerService{
 
         if(answer.userId == authId){
             answer.delete()
+        } else {
+            console.error("Usuário não possui autorização para deletar a resposta.")
         }
 
         return questionId
