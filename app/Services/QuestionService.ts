@@ -21,4 +21,18 @@ export default class QuestionService {
 
     }
 
+    public static async countLikes(question : Question){
+        
+        await question.load('question_likes')
+
+        let question_likes = question.question_likes
+        let likes = 0
+        
+        for(let question_like of question_likes){
+            likes += question_like.value
+        }
+
+        return likes
+    }
+
 }

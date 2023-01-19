@@ -7,6 +7,7 @@ import UserValidator from 'App/Validators/UserValidator'
 import UsernameValidator from 'App/Validators/UsernameValidator'
 import Question from 'App/Models/Question'
 import Answer from 'App/Models/Answer'
+import QuestionService from 'App/Services/QuestionService'
 
 export default class UserController {
 
@@ -42,8 +43,15 @@ export default class UserController {
 
         const user = await User.findByOrFail('username', params.username)
 
-        const questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
+        let questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
         questions.baseUrl('/perfil/ya/' + user.username)
+
+        console.log(questions)
+
+        for(let question of questions){
+            let likes = await QuestionService.countLikes(question)
+            question = Object.assign(question, {likes})
+        }
 
         return view.render('user/profile', {user, questions})
     }

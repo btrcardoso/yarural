@@ -37,7 +37,7 @@
     <div>
         <!-- Likes -->
         @!component('components/likes',{
-            likes:'-2',
+            likes: question.likes,
             likeRoute: route('question_like.like', {questionId: question.id}),
             dislikeRoute: route('question_like.dislike', {questionId: question.id})
         })

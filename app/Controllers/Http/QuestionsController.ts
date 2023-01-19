@@ -30,7 +30,7 @@ export default class QuestionsController {
   }
 
   public async show({ params, view }: HttpContextContract) {
-    const question = await Question.findOrFail(params.id)
+    let question = await Question.findOrFail(params.id)
     const user = await User.findOrFail(question.userId)
     const category = await Category.find(question.categoryId) || null
     const date  = question.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' hh':'mm")
@@ -45,6 +45,9 @@ export default class QuestionsController {
       answer = Object.assign(answer, {user: answer.user, date: answerDate})
     }
 
+    let likes = await QuestionService.countLikes(question)
+    question = Object.assign(question, {likes})
+    
     return view.render('questions/show', {question, user, date, category, answers})
   }
 
