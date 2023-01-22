@@ -39,7 +39,9 @@
         @!component('components/likes',{
             likes: question.likes,
             likeRoute: route('question_like.like', {questionId: question.id}),
-            dislikeRoute: route('question_like.dislike', {questionId: question.id})
+            dislikeRoute: route('question_like.dislike', {questionId: question.id}),
+            type: 'question',
+            id: question.id
         })
     </div>
 
@@ -56,3 +58,25 @@
     </div>
 
 @endif
+
+<script>
+
+    function like(type, id){
+
+        if(type == "question"){
+            route="/like_pergunta"
+        } else {
+            route="/"
+        }
+
+        fetch(route+"/"+id, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(json => {
+            document.getElementById(`likes-${type}-${id}`).innerHTML = json.countLikes
+        })
+
+    }
+
+</script>
