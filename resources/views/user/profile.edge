@@ -19,7 +19,7 @@
                 <h1 class="text-5xl font-bold">{{user.name}}</h1>
                 <p class="italic">{{'@'}}{{ user.username }} </p>
                 <p class="py-1.5 font-serif"> {{ user.description? user.description : '' }} </p>
-                <p class="font-bold"> Pontos: | Colocação:  </p>
+                <p class="font-bold"> Pontos: {{user.score}} | Colocação: {{ranking}} </p>
 
             </div>
 

@@ -42,10 +42,17 @@ export default class UserController {
 
         const user = await User.findByOrFail('username', params.username)
 
+        const users = await User.query().orderBy('score')
+        console.log(users)
+
+        const matchUser = (actualUser) => actualUser.id == user.id;
+
+        const ranking = users.findIndex(matchUser) + 1
+
         const questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
         questions.baseUrl('/perfil/ya/' + user.username)
 
-        return view.render('user/profile', {user, questions})
+        return view.render('user/profile', {user, questions, ranking})
     }
 
     public async showAnswers({view, params, request}: HttpContextContract){
