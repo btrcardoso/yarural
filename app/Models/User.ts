@@ -26,6 +26,9 @@ export default class User extends BaseModel {
   @column()
   public description: string | null
 
+  @column()
+  public score: number
+
   @hasMany( () => Question)
   public questions: HasMany<typeof Question>
 
