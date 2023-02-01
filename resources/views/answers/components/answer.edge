@@ -7,7 +7,12 @@
 
     <div>
         <!-- Answer likes -->
-        @!component('components/likes', {likes: 25})
+        @!component('components/likes',{
+            likes: answer.likes,
+            type: 'answer',
+            id: answer.id,
+            likeValue: answer.likeValue
+        })
     </div>
 
 </div>

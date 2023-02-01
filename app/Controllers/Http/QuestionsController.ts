@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Category from 'App/Models/Category'
 import Question from 'App/Models/Question'
 import User from 'App/Models/User'
+import AnswerService from 'App/Services/AnswerService'
 import QuestionService from 'App/Services/QuestionService'
 import QuestionValidator from 'App/Validators/QuestionValidator'
 
@@ -43,6 +44,7 @@ export default class QuestionsController {
       await answer.load('user')
       answerDate = answer.createdAt.toFormat("dd 'de' MMM'.' yyyy '-' HH':'mm")
       answer = Object.assign(answer, {user: answer.user, date: answerDate})
+      answer = await AnswerService.getAnswerWithLikes(answer, auth.user!.id)
     }
 
     question = await QuestionService.getQuestionWithLikes(question, auth.user!.id)

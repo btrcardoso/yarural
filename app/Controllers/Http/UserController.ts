@@ -9,6 +9,7 @@ import Question from 'App/Models/Question'
 import Answer from 'App/Models/Answer'
 import QuestionService from 'App/Services/QuestionService'
 import QuestionLikeService from 'App/Services/QuestionLikeService'
+import AnswerService from 'App/Services/AnswerService'
 
 export default class UserController {
 
@@ -74,6 +75,8 @@ export default class UserController {
 
             // o ideal seria utilizar este comando, mas ele não é aceito por causa do belongsTo de answer.question
             //answer.question = await QuestionService.getQuestionWithLikes(answer.question, auth.user!.id)
+            
+            answer = await AnswerService.getAnswerWithLikes(answer, auth.user!.id)
         }
 
         return view.render('user/profile', {user, answers})
