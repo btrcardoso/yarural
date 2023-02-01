@@ -23,7 +23,7 @@
 <div class="flex justify-between">
 
     <div>
-        <!-- Category -->
+        {{-- Category --}}
         <label class="label">
             <span class="label-text"> 
                 <p class="font-sans font-bold text-base">
@@ -35,7 +35,7 @@
     </div>
 
     <div>
-        <!-- Likes -->
+        {{-- Likes --}}
         @!component('components/likes',{
             likes: question.likes,
             type: 'question',
@@ -50,7 +50,7 @@
 @if(question.description)
 
     <div class="p-4">
-        <!-- Description -->
+        {{-- Description --}}
         <p class="break-words">
             {{ question.description}}
         </p>

@@ -8,6 +8,7 @@ import UsernameValidator from 'App/Validators/UsernameValidator'
 import Question from 'App/Models/Question'
 import Answer from 'App/Models/Answer'
 import QuestionService from 'App/Services/QuestionService'
+import QuestionLikeService from 'App/Services/QuestionLikeService'
 
 export default class UserController {
 
@@ -36,7 +37,7 @@ export default class UserController {
         return response.redirect().toRoute('auth.create')
     }
 
-    public async show({ view, params, request }: HttpContextContract){
+    public async show({ view, params, request, auth }: HttpContextContract){
 
         const page = request.input('page', 1)
         const limit = 10
@@ -48,13 +49,14 @@ export default class UserController {
 
         for(let question of questions){
             let likes = await QuestionService.countLikes(question)
-            question = Object.assign(question, {likes})
+            let likeValue = await QuestionLikeService.getQuestionLikeValue(auth.user!.id, question.id)
+            question = Object.assign(question, {likes, likeValue})
         }
 
         return view.render('user/profile', {user, questions})
     }
 
-    public async showAnswers({view, params, request}: HttpContextContract){
+    public async showAnswers({view, params, request, auth}: HttpContextContract){
 
         const page = request.input('page', 1)
         const limit = 10
@@ -67,6 +69,11 @@ export default class UserController {
         for(let answer of answers){
             await answer.load('question')
             await answer.question.load('user')
+
+            // let likes = await QuestionService.countLikes(answer.question)
+            // let likeValue = await QuestionLikeService.getQuestionLikeValue(auth.user!.id, answer.question.id)
+            // answer.question = Object.assign(answer.question, {likes, likeValue})
+            answer.question = await QuestionService.getQuestionWithLikes(answer.question, auth.user!.id)
         }
 
         return view.render('user/profile', {user, answers})

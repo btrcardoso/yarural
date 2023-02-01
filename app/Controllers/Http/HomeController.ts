@@ -11,8 +11,7 @@ export default class HomeController {
 
             const questions = await Question.query().preload('user').orderBy('created_at', 'desc').paginate(page, limit)
             for(let question of questions){
-                let likes = await QuestionService.countLikes(question)
-                question = Object.assign(question, {likes})
+                question = await QuestionService.getQuestionWithLikes(question, auth.user!.id)
             }
 
             return view.render('home/loggedInHome', {questions: questions})
