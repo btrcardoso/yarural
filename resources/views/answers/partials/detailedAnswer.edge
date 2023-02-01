@@ -1,17 +1,20 @@
 <div class="flex justify-between">
-    <!-- Image and username -->
+    {{-- Image and username --}}
     @!component('components/imageAndUsername', {
         username: answer.user.username
     })
 
-    <!-- Votes -->
-    @!component('components/votes',{
-        votes:'-2'
+    {{-- Likes --}}
+    @!component('components/likes',{
+        likes: answer.likes,
+        type: 'answer',
+        id: answer.id,
+        likeValue: answer.likeValue
     })
 </div>
 
 <div class="p-4">
-    <!-- Description -->
+    {{-- Description --}}
     <p class="break-words">
         {{answer.description}}
     </p>
@@ -21,7 +24,7 @@
 <div class="flex justify-between">
     
     <div>
-        <!-- Source -->
+        {{-- Source --}}
         <label class="label">
             <span class="label-text-alt">Fonte: {{ answer.source ? answer.source : 'Não especificada' }}</span>
         </label>

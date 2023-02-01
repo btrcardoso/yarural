@@ -1,4 +1,5 @@
 import Question from "App/Models/Question"
+import QuestionLikeService from "./QuestionLikeService"
 
 export default class QuestionService {
 
@@ -19,6 +20,27 @@ export default class QuestionService {
         const quest = await Question.findOrFail(id)
         quest.delete()
 
+    }
+
+    public static async countLikes(question : Question){
+        
+        await question.load('question_likes')
+
+        let question_likes = question.question_likes
+        let likes = 0
+        
+        for(let question_like of question_likes){
+            likes += question_like.value
+        }
+
+        return likes
+    }
+
+    public static async getQuestionWithLikes(question: Question, userId: number){
+        let likes = await QuestionService.countLikes(question)
+        let likeValue = await QuestionLikeService.getQuestionLikeValue(userId, question.id)
+
+        return Object.assign(question, {likes, likeValue})
     }
 
 }

@@ -3,6 +3,7 @@ import { BaseModel, column, hasMany, HasMany, belongsTo, BelongsTo} from '@ioc:A
 import Answer from './Answer'
 import User from './User'
 import Category from './Category'
+import QuestionLike from './QuestionLike'
 
 export default class Question extends BaseModel {
   @column({ isPrimary: true })
@@ -28,6 +29,9 @@ export default class Question extends BaseModel {
 
   @belongsTo(() => Category)
   public category: BelongsTo<typeof Category>
+
+  @hasMany(() => QuestionLike)
+  public question_likes: HasMany<typeof QuestionLike>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
