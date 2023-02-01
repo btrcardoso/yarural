@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
 
       table.integer('user_id').notNullable().references('id').inTable('users')
-      table.integer('question_id').notNullable().references('id').inTable('questions')
+      table.integer('question_id').notNullable().references('id').inTable('questions').onDelete('CASCADE')
       table.integer('value')
 
       /**
