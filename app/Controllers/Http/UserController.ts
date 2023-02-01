@@ -42,8 +42,7 @@ export default class UserController {
 
         const user = await User.findByOrFail('username', params.username)
 
-        const users = await User.query().orderBy('score')
-        console.log(users)
+        const users = await User.query().orderBy('score', 'desc')
 
         const matchUser = (actualUser) => actualUser.id == user.id;
 
@@ -106,9 +105,18 @@ export default class UserController {
 
     }
     
-    public async rank({view}: HttpContextContract) {
+    public async rank({request, view}: HttpContextContract) {
+        const page = request.input('page', 1)
+        const limit = 50
+
+        const users = await User.query().orderBy('score', 'desc').paginate(page, limit)
+        users.baseUrl('/ranking/')
+
+        for(const user of users) {
+            user["index"] = users.indexOf(user) + limit*(page-1) + 1
+        }
         
-        return view.render('user/rank')
+        return view.render('user/rank', {users: users})
 
     }
 }

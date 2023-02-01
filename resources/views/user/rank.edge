@@ -3,5 +3,24 @@
 @set('rankActive', true)
 
 @section('body')
+    
+    @each(user in users)
+
+        {{user.index}}
+        {{user.name}}
+        <br>
+    @end
+
+    <div class="btn-group p-1 m-1" >
+
+        @each(anchor in users.getUrlsForRange(1, users.lastPage))
+
+            <a role="button" href="{{ anchor.url }}" class="btn btn-md">
+                {{ anchor.page }}
+            </a>
+            
+        @endeach
+
+    </div>
 
 @end
