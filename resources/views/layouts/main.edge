@@ -7,6 +7,71 @@
         <title>{{title}}</title>
         @entryPointStyles('app')
     </head>
+    <script>
+        function getLikeBehaviors(type, action){
+            let route = "/like_pergunta"
+            let swLike = "3.5"
+            let swDislike = "1.5"
+            let newActionLike = 0
+            let newActionDislike = -1
+
+            if(type == "question"){
+                switch(action){
+                    case 1:
+                        route = "/like_pergunta"
+                        swLike = "3.5"
+                        swDislike = "1.5"
+                        newActionLike = 0
+                        newActionDislike = -1
+                        break
+                    case -1:
+                        route = "/dislike_pergunta"
+                        swLike = "1.5"
+                        swDislike = "3.5"
+                        newActionLike = 1
+                        newActionDislike = 0
+                        break
+                    case 0: 
+                        route = "/deletar_like_pergunta"
+                        swLike = "1.5"
+                        swDislike = "1.5"
+                        newActionLike = 1
+                        newActionDislike = -1
+                        break
+                    default:
+                        route="/"
+                        swLike = "1.5"
+                        swDislike = "1.5"
+                        newActionLike = 1
+                        newActionDislike = -1
+                        break
+                }
+            } else {
+                route="/"
+            }
+
+            return {
+                route, swLike, swDislike, newActionLike, newActionDislike
+            }
+
+            }
+
+        function like(type, id, action){
+
+            let likeBehaviors = getLikeBehaviors(type, action)
+
+            fetch(likeBehaviors.route+"/"+id)
+                .then(response => response.json())
+                .then(json => {
+                    document.getElementById(`like-${type}-${id}`).setAttribute("onclick", `like('${type}', ${id}, ${likeBehaviors.newActionLike})`)
+                    document.getElementById(`dislike-${type}-${id}`).setAttribute("onclick", `like('${type}', ${id}, ${likeBehaviors.newActionDislike})`)
+                    document.getElementById(`svg-like-${type}-${id}`).setAttribute("stroke-width",likeBehaviors.swLike)
+                    document.getElementById(`svg-dislike-${type}-${id}`).setAttribute("stroke-width",likeBehaviors.swDislike)
+                    document.getElementById(`countlikes-${type}-${id}`).innerHTML = json.countLikes
+                })
+
+        }
+    </script>
     <body>
 
         <div class="navbar absolute bg-base-300 h-16">
