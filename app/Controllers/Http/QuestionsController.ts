@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Category from 'App/Models/Category'
 import Question from 'App/Models/Question'
 import User from 'App/Models/User'
+import QuestionLikeService from 'App/Services/QuestionLikeService'
 import QuestionService from 'App/Services/QuestionService'
 import QuestionValidator from 'App/Validators/QuestionValidator'
 
@@ -29,7 +30,7 @@ export default class QuestionsController {
     return response.redirect().toRoute('question.show', { id: quest.id })
   }
 
-  public async show({ params, view }: HttpContextContract) {
+  public async show({ params, view, auth }: HttpContextContract) {
     let question = await Question.findOrFail(params.id)
     const user = await User.findOrFail(question.userId)
     const category = await Category.find(question.categoryId) || null
@@ -46,7 +47,8 @@ export default class QuestionsController {
     }
 
     let likes = await QuestionService.countLikes(question)
-    question = Object.assign(question, {likes})
+    let likeValue = await QuestionLikeService.getQuestionLikeValue(auth.user!.id, params.id)
+    question = Object.assign(question, {likes, likeValue})
     
     return view.render('questions/show', {question, user, date, category, answers})
   }

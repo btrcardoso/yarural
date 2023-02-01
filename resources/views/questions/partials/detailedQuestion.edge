@@ -41,7 +41,8 @@
             likeRoute: route('question_like.like', {questionId: question.id}),
             dislikeRoute: route('question_like.dislike', {questionId: question.id}),
             type: 'question',
-            id: question.id
+            id: question.id,
+            likeValue: question.likeValue
         })
     </div>
 
@@ -61,50 +62,66 @@
 
 <script>
 
-    function like(type, id, action){
-        
+    function getLikeBehaviors(type, action){
+
+        let route = "/like_pergunta"
+        let swLike = "3.5"
+        let swDislike = "1.5"
+        let newActionLike = 0
+        let newActionDislike = -1
+
         if(type == "question"){
             switch(action){
-                case 0:
+                case 1:
                     route = "/like_pergunta"
                     swLike = "3.5"
                     swDislike = "1.5"
-                    newActionLike = 2
-                    newActionDislike = 1
+                    newActionLike = 0
+                    newActionDislike = -1
                     break
-                case 1:
+                case -1:
                     route = "/dislike_pergunta"
                     swLike = "1.5"
                     swDislike = "3.5"
-                    newActionLike = 0
-                    newActionDislike = 2
+                    newActionLike = 1
+                    newActionDislike = 0
                     break
-                case 2: 
+                case 0: 
                     route = "/deletar_like_pergunta"
                     swLike = "1.5"
                     swDislike = "1.5"
-                    newActionLike = 0
-                    newActionDislike = 1
+                    newActionLike = 1
+                    newActionDislike = -1
                     break
                 default:
                     route="/"
                     swLike = "1.5"
                     swDislike = "1.5"
-                    newActionLike = 0
-                    newActionDislike = 1
+                    newActionLike = 1
+                    newActionDislike = -1
                     break
             }
         } else {
             route="/"
         }
 
-        fetch(route+"/"+id)
+        return {
+            route, swLike, swDislike, newActionLike, newActionDislike
+        }
+        
+    }
+
+    function like(type, id, action){
+
+        let likeBehaviors = getLikeBehaviors(type, action)
+
+        fetch(likeBehaviors.route+"/"+id)
             .then(response => response.json())
             .then(json => {
-                document.getElementById(`like-${type}-${id}`).setAttribute("onclick", `like('${type}', ${id}, ${newActionLike})`)
-                document.getElementById(`dislike-${type}-${id}`).setAttribute("onclick", `like('${type}', ${id}, ${newActionDislike})`)
-                document.getElementById(`svg-like-${type}-${id}`).setAttribute("stroke-width",swLike)
-                document.getElementById(`svg-dislike-${type}-${id}`).setAttribute("stroke-width",swDislike)
+                document.getElementById(`like-${type}-${id}`).setAttribute("onclick", `like('${type}', ${id}, ${likeBehaviors.newActionLike})`)
+                document.getElementById(`dislike-${type}-${id}`).setAttribute("onclick", `like('${type}', ${id}, ${likeBehaviors.newActionDislike})`)
+                document.getElementById(`svg-like-${type}-${id}`).setAttribute("stroke-width",likeBehaviors.swLike)
+                document.getElementById(`svg-dislike-${type}-${id}`).setAttribute("stroke-width",likeBehaviors.swDislike)
                 document.getElementById(`countlikes-${type}-${id}`).innerHTML = json.countLikes
             })
 
