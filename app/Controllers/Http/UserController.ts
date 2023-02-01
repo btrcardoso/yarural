@@ -105,5 +105,11 @@ export default class UserController {
         return response.redirect().toRoute('user.show', {username: user.username})
 
     }
+    
+    public async rank({view}: HttpContextContract) {
+        
+        return view.render('user/rank')
+
+    }
 }
 

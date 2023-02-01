@@ -58,3 +58,5 @@ Route.group(() => {
   Route.get('/', 'CategoriesController.index').as('index')
   Route.get('/:id', 'CategoriesController.show').as('show')
 }).prefix('/categorias').as('category').middleware('auth')
+
+Route.get('/ranking', 'UserController.rank').as('user.rank')

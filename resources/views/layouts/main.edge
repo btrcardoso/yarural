@@ -61,7 +61,7 @@
                 <!-- Sidebar content here -->
                 <li><a href="{{ route('home.index') }}" class="{{ homeActive?'active':'' }}">Página inicial</a></li>
                 <li><a href="{{ route('category.index') }}" class="{{ categoryActive?'active':'' }}" >Categorias</a></li>
-                <li><a>Placares de líderes</a></li>
+                <li><a href="{{ route('user.rank') }}" class="{{ rankActive?'active':'' }}">Placares de líderes</a></li>
                 <li></li>
                 <a href="{{ route('question.create') }}" class="btn btn-primary" >Perguntar</a>
             </ul>
