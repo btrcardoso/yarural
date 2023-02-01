@@ -38,8 +38,6 @@
         <!-- Likes -->
         @!component('components/likes',{
             likes: question.likes,
-            likeRoute: route('question_like.like', {questionId: question.id}),
-            dislikeRoute: route('question_like.dislike', {questionId: question.id}),
             type: 'question',
             id: question.id,
             likeValue: question.likeValue
