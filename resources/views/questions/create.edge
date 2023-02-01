@@ -29,7 +29,12 @@
                 maxLength: '2048',
                 value: flashMessages.values ? (flashMessages.values.description != null ? flashMessages.values.description : '') : ''        
             })
-
+            @if(request.qs().lowScore)
+                <div class="flex text-red-600 p-2">
+                    Você precisa de mais pontos para fazer uma pergunta!
+                </div>
+            @end
+            
             @!select({
                 label: 'Categoria',
                 name: 'categoryId',
@@ -47,7 +52,7 @@
                     })
 
                 </div>
-                
+
                 <div class="py-3">
 
                     @!button({
@@ -62,4 +67,5 @@
         </form>
 
     </div>
+
 @end
