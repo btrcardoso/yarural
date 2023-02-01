@@ -14,14 +14,19 @@ export default class QuestionLikeService{
         await QuestionLike.updateOrCreate(searchPayload, persistancePayload)
     }
 
-    public static async destroyQuestionLike(questionLikeId : number, authId : number){
-        const questionLike = await QuestionLike.findOrFail(questionLikeId)
-
-        if(questionLike.userId == authId){
-            questionLike.delete()
-        } else {
-            console.error("Usuário não possui autorização para deletar a curtida na pergunta.")
-        }
+    public static async destroyQuestionLike(userId : number, questionId : number){
+        await QuestionLike.query().where('questionId',questionId).where('userId', userId).delete()
     }
+
+    // talvez seja desnecessario, entao apagar
+    // public static async destroyQuestionLikeById(questionLikeId : number, authId : number){
+    //     const questionLike = await QuestionLike.findOrFail(questionLikeId)
+
+    //     if(questionLike.userId == authId){
+    //         questionLike.delete()
+    //     } else {
+    //         console.error("Usuário não possui autorização para deletar a curtida na pergunta.")
+    //     }
+    // }
 
 }

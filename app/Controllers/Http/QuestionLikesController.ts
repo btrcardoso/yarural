@@ -18,21 +18,29 @@ export default class QuestionLikesController {
 
     }
 
-    public async dislike({params, auth} : HttpContextContract){
+    public async dislike({params, auth, response} : HttpContextContract){
 
         await QuestionLikeService.dislike(
             auth.user!.id, 
             params.questionId
         )
 
+        let question = await Question.findOrFail(params.questionId)
+        let countLikes = await QuestionService.countLikes(question)
+        return response.send({countLikes})
+
     }
 
-    public async destroy({params, auth} : HttpContextContract){
+    public async destroy({params, auth, response} : HttpContextContract){
 
         await QuestionLikeService.destroyQuestionLike(
             auth.user!.id,
-            params.questionLikeId
+            params.questionId
         )
+
+        let question = await Question.findOrFail(params.questionId)
+        let countLikes = await QuestionService.countLikes(question)
+        return response.send({countLikes})
         
     }
 

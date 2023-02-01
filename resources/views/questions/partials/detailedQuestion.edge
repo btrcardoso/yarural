@@ -61,21 +61,52 @@
 
 <script>
 
-    function like(type, id){
-
+    function like(type, id, action){
+        
         if(type == "question"){
-            route="/like_pergunta"
+            switch(action){
+                case 0:
+                    route = "/like_pergunta"
+                    swLike = "3.5"
+                    swDislike = "1.5"
+                    newActionLike = 2
+                    newActionDislike = 1
+                    break
+                case 1:
+                    route = "/dislike_pergunta"
+                    swLike = "1.5"
+                    swDislike = "3.5"
+                    newActionLike = 0
+                    newActionDislike = 2
+                    break
+                case 2: 
+                    route = "/deletar_like_pergunta"
+                    swLike = "1.5"
+                    swDislike = "1.5"
+                    newActionLike = 0
+                    newActionDislike = 1
+                    break
+                default:
+                    route="/"
+                    swLike = "1.5"
+                    swDislike = "1.5"
+                    newActionLike = 0
+                    newActionDislike = 1
+                    break
+            }
         } else {
             route="/"
         }
 
-        fetch(route+"/"+id, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(json => {
-            document.getElementById(`likes-${type}-${id}`).innerHTML = json.countLikes
-        })
+        fetch(route+"/"+id)
+            .then(response => response.json())
+            .then(json => {
+                document.getElementById(`like-${type}-${id}`).setAttribute("onclick", `like('${type}', ${id}, ${newActionLike})`)
+                document.getElementById(`dislike-${type}-${id}`).setAttribute("onclick", `like('${type}', ${id}, ${newActionDislike})`)
+                document.getElementById(`svg-like-${type}-${id}`).setAttribute("stroke-width",swLike)
+                document.getElementById(`svg-dislike-${type}-${id}`).setAttribute("stroke-width",swDislike)
+                document.getElementById(`countlikes-${type}-${id}`).innerHTML = json.countLikes
+            })
 
     }
 

@@ -62,4 +62,5 @@ Route.group(() => {
 Route.group(() => {
   Route.get('like_pergunta/:questionId', 'QuestionLikesController.like').as('question_like.like')
   Route.get('dislike_pergunta/:questionId', 'QuestionLikesController.dislike').as('question_like.dislike')
+  Route.get('deletar_like_pergunta/:questionId', 'QuestionLikesController.destroy').as('question_like.destroy')
 }).middleware('auth')
