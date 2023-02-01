@@ -48,9 +48,7 @@ export default class UserController {
         questions.baseUrl('/perfil/ya/' + user.username)
 
         for(let question of questions){
-            let likes = await QuestionService.countLikes(question)
-            let likeValue = await QuestionLikeService.getQuestionLikeValue(auth.user!.id, question.id)
-            question = Object.assign(question, {likes, likeValue})
+            question = await QuestionService.getQuestionWithLikes(question, auth.user!.id)
         }
 
         return view.render('user/profile', {user, questions})
@@ -70,10 +68,12 @@ export default class UserController {
             await answer.load('question')
             await answer.question.load('user')
 
-            // let likes = await QuestionService.countLikes(answer.question)
-            // let likeValue = await QuestionLikeService.getQuestionLikeValue(auth.user!.id, answer.question.id)
-            // answer.question = Object.assign(answer.question, {likes, likeValue})
-            answer.question = await QuestionService.getQuestionWithLikes(answer.question, auth.user!.id)
+            let likes = await QuestionService.countLikes(answer.question)
+            let likeValue = await QuestionLikeService.getQuestionLikeValue(auth.user!.id, answer.question.id)
+            answer.question = Object.assign(answer.question, {likes, likeValue})
+
+            // o ideal seria utilizar este comando, mas ele não é aceito por causa do belongsTo de answer.question
+            //answer.question = await QuestionService.getQuestionWithLikes(answer.question, auth.user!.id)
         }
 
         return view.render('user/profile', {user, answers})
