@@ -7,6 +7,54 @@
         <title>{{title}}</title>
         @entryPointStyles('app')
     </head>
+    <script>
+        function like(type, id, action){
+
+            switch(action){
+                case 1:
+                    route = "/like_"
+                    swLike = "3.5"
+                    swDislike = "1.5"
+                    newActionLike = 0
+                    newActionDislike = -1
+                    break
+                case -1:
+                    route = "/dislike_"
+                    swLike = "1.5"
+                    swDislike = "3.5"
+                    newActionLike = 1
+                    newActionDislike = 0
+                    break
+                case 0: 
+                    route = "/deletar_like_"
+                    swLike = "1.5"
+                    swDislike = "1.5"
+                    newActionLike = 1
+                    newActionDislike = -1
+                    break
+                default:
+                    route="/"
+                    swLike = "1.5"
+                    swDislike = "1.5"
+                    newActionLike = 1
+                    newActionDislike = -1
+                    break
+            }
+
+            let typeRoute = (type=="question") ? "pergunta" : "resposta";
+
+            fetch(route + typeRoute + "/" + id)
+                .then(response => response.json())
+                .then(json => {
+                    document.querySelectorAll(`#like-${type}-${id}`).forEach(el => { el.setAttribute("onclick", `like('${type}', ${id}, ${newActionLike})`) })
+                    document.querySelectorAll(`#dislike-${type}-${id}`).forEach(el => { el.setAttribute("onclick", `like('${type}', ${id}, ${newActionDislike})`) })
+                    document.querySelectorAll(`#svg-like-${type}-${id}`).forEach(el => { el.setAttribute("stroke-width",swLike) })
+                    document.querySelectorAll(`#svg-dislike-${type}-${id}`).forEach(el => { el.setAttribute("stroke-width",swDislike) })
+                    document.querySelectorAll(`#countlikes-${type}-${id}`).forEach(el => { el.innerHTML = json.countLikes })
+                })
+
+        }
+    </script>
     <body>
 
         <div class="navbar absolute bg-base-300 h-16">

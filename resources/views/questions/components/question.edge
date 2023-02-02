@@ -1,14 +1,20 @@
 <div class="flex justify-between">
     
     <div class="truncate">
-        <!-- Title -->
+        {{-- Title --}}
         <a class="text-lg font-bold hover:underline" href="{{ route('question.show', {id: question.id}) }}">
             {{ question.question }}
         </a>
     </div>
 
     <div>
-        @!component('components/votes', {votes: 10})
+        {{-- Likes --}}
+        @!component('components/likes',{
+            likes: question.likes,
+            type: 'question',
+            id: question.id,
+            likeValue: question.likeValue
+        })
     </div>
 
 </div>

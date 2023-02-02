@@ -1,4 +1,5 @@
 import Answer from "App/Models/Answer"
+import AnswerLikeService from "./AnswerLikeService"
 
 export default class AnswerService{
 
@@ -20,6 +21,27 @@ export default class AnswerService{
 
         return questionId
 
+    }
+
+    public static async countLikes(answer : Answer){
+        
+        await answer.load('answer_likes')
+
+        let answer_likes = answer.answer_likes
+        let likes = 0
+        
+        for(let answer_like of answer_likes){
+            likes += answer_like.value
+        }
+
+        return likes
+    }
+
+    public static async getAnswerWithLikes(answer: Answer, userId: number){
+        let likes = await AnswerService.countLikes(answer)
+        let likeValue = await AnswerLikeService.getAnswerLikeValue(userId, answer.id)
+
+        return Object.assign(answer, {likes, likeValue})
     }
 
 }

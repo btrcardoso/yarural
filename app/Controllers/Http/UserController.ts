@@ -7,6 +7,9 @@ import UserValidator from 'App/Validators/UserValidator'
 import UsernameValidator from 'App/Validators/UsernameValidator'
 import Question from 'App/Models/Question'
 import Answer from 'App/Models/Answer'
+import QuestionService from 'App/Services/QuestionService'
+import QuestionLikeService from 'App/Services/QuestionLikeService'
+import AnswerService from 'App/Services/AnswerService'
 
 export default class UserController {
 
@@ -35,7 +38,7 @@ export default class UserController {
         return response.redirect().toRoute('auth.create')
     }
 
-    public async show({ view, params, request }: HttpContextContract){
+    public async show({ view, params, request, auth }: HttpContextContract){
 
         const page = request.input('page', 1)
         const limit = 10
@@ -48,13 +51,17 @@ export default class UserController {
 
         const ranking = users.findIndex(matchUser) + 1
 
-        const questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
+        let questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
         questions.baseUrl('/perfil/ya/' + user.username)
+
+        for(let question of questions){
+            question = await QuestionService.getQuestionWithLikes(question, auth.user!.id)
+        }
 
         return view.render('user/profile', {user, questions, ranking})
     }
 
-    public async showAnswers({view, params, request}: HttpContextContract){
+    public async showAnswers({view, params, request, auth}: HttpContextContract){
 
         const page = request.input('page', 1)
         const limit = 10
@@ -67,6 +74,15 @@ export default class UserController {
         for(let answer of answers){
             await answer.load('question')
             await answer.question.load('user')
+
+            let likes = await QuestionService.countLikes(answer.question)
+            let likeValue = await QuestionLikeService.getQuestionLikeValue(auth.user!.id, answer.question.id)
+            answer.question = Object.assign(answer.question, {likes, likeValue})
+
+            // o ideal seria utilizar este comando, mas ele não é aceito por causa do belongsTo de answer.question
+            //answer.question = await QuestionService.getQuestionWithLikes(answer.question, auth.user!.id)
+            
+            answer = await AnswerService.getAnswerWithLikes(answer, auth.user!.id)
         }
 
         return view.render('user/profile', {user, answers})

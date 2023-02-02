@@ -6,8 +6,13 @@
     </div>
 
     <div>
-        <!-- Answer votes -->
-        @!component('components/votes', {votes: 25})
+        <!-- Answer likes -->
+        @!component('components/likes',{
+            likes: answer.likes,
+            type: 'answer',
+            id: answer.id,
+            likeValue: answer.likeValue
+        })
     </div>
 
 </div>
