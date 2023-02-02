@@ -24,6 +24,10 @@ export default class extends BaseSeeder {
         value: 2
       },
       {
+        name: 'removeAnswer',
+        value: -2
+      },
+      {
         name: 'receiveLike',
         value: 1
       },
