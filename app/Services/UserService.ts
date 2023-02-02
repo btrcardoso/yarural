@@ -33,4 +33,14 @@ export default class UserService {
             return false
       }
 
+      public static async countQuestions(user: User) {
+        await user.loadCount('questions')
+        return user.$extras.questions_count
+      }
+
+      public static async countAnswers(user: User) {
+        await user.loadCount('answers')
+        return user.$extras.answers_count
+      }
+
 }

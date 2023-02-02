@@ -130,6 +130,8 @@ export default class UserController {
 
         for(const user of users) {
             user["index"] = users.indexOf(user) + limit*(page-1) + 1
+            user["questionsCount"] = await UserService.countQuestions(user)
+            user["answersCount"] = await UserService.countAnswers(user)
         }
         
         return view.render('user/rank', {users: users})
