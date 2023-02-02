@@ -20,7 +20,7 @@ export default class UserService {
         return user
       }
 
-      public static async changeScore(user: User, type: string) {
+      public static async changeScoreQuestion(user: User, type: string) {
         const score = await Score.findByOrFail('name', type)
 
         if (user.score >= Math.abs(score.value)) {
@@ -31,6 +31,25 @@ export default class UserService {
         }
         else 
             return false
+      }
+
+      public static async changeScore(user: User, type: string) {
+        const score = await Score.findByOrFail('name', type)
+
+        if (score.value < 0) {
+          if (user.score >= Math.abs(score.value)) {
+            user.score += score.value
+            user.save()
+          }
+          else {
+            user.score = 0
+            user.save()
+          }
+        }
+        else {
+          user.score += score.value
+          user.save()
+        }
       }
 
       public static async countQuestions(user: User) {

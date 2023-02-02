@@ -22,7 +22,7 @@ export default class QuestionsController {
 
     const categoryId = data.categoryId ? data.categoryId : null; 
 
-    if (await UserService.changeScore(user, 'makeQuestion')) {
+    if (await UserService.changeScoreQuestion(user, 'makeQuestion')) {
       const quest = await QuestionService.createQuestion(
         data.question,
         data.description,
