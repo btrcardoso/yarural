@@ -32,13 +32,15 @@
                                 </div>
                             </div>
                             <div>
-                                <div class="font-bold">{{user.name?user.name:''}}</div>
+                                <div class="font-bold">
+                                  <a href="{{route('user.show', {username: user.username})}}">{{user.name?user.name:''}}</a> 
+                                </div>
                                 <div class="text-sm opacity-50">{{user.username?user.username:''}}</div>
                             </div>
                         </div>
                     </td>
                     <td>
-                        {{user.score?user.score:''}}
+                        {{user.score?user.score:0}}
                         <br>
                     </td>
                     <td>{{user.questionsCount?user.questionsCount:0}}</td>
