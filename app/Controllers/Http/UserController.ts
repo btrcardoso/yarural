@@ -47,7 +47,7 @@ export default class UserController {
 
         const users = await User.query().orderBy('score', 'desc')
 
-        const matchUser = (actualUser) => actualUser.id == user.id;
+        const matchUser = (actualUser: User) => actualUser.id == user.id;
 
         const ranking = users.findIndex(matchUser) + 1
 
