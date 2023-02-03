@@ -22,6 +22,11 @@ export default class HomeController {
         }
     }
 
+    public async aboutRank({view}: HttpContextContract) {
+
+        return view.render('home/aboutRank')
+    } 
+
 }
 
 

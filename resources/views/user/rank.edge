@@ -4,6 +4,10 @@
 
 @section('body')
 
+    <div class="flex justify-end">
+        <a class="text-sky-500 hover:text-sky-800" href="{{route('home.aboutRank')}}">Como funcionam os pontos?</a>
+    </div>
+
     @!component('components/table', {
         users: users
     })
