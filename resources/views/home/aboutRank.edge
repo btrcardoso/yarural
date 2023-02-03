@@ -1,0 +1,58 @@
+@layout('layouts/main')
+@set('title','Yarural | Sobre os Pontos')
+@set('rankActive', true)
+@section('body')
+    <div class="bg-base-200 rounded-t-lg shadow p-4">
+        <div class="text-3xl font-bold tracking-wide capitalize font-sans m-2">
+            Sistema de pontos
+        </div>
+        <div class="m-2">
+            Para estimular a participação dos usuários, o Yarural possui um sistema de pontos. O número de pontos que você vai receber depende das ações tomadas por você. A tabela de pontos abaixo resume a pontuação de diferentes ações. Apesar de você não poder usar os pontos para comprar ou trocar por algo, eles possibilitam que os outros usuários saibam o quanto você vem sendo ativo e útil ao oferecer conteúdo de qualidade.
+        </div>
+    </div>
+
+    <div class="overflow-x-auto m-2">
+        <table class="table table-compact">
+            <thead>
+                <tr>
+                    <th>Ação</th>
+                    <th>Pontos</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Criar uma conta no Yarural</td>
+                    <td>+100</td>
+                </tr>
+                <tr>
+                    <td>Fazer uma pergunta</td>
+                    <td>-5</td>
+                </tr>
+                <tr>
+                    <td>Votar em pergunta ou resposta</td>
+                    <td>+1</td>
+                </tr>
+                <tr>
+                    <td>Receber um voto positivo</td>
+                    <td>+1</td>
+                </tr>
+                <tr>
+                    <td>Receber um voto negativo</td>
+                    <td>-1</td>
+                </tr>
+                <tr>
+                    <td>Responder uma pergunta</td>
+                    <td>+2</td>
+                </tr>
+                <tr>
+                    <td>Remover sua resposta</td>
+                    <td>-2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-xs m-2 font-medium">
+        Nota: Caso seu voto seja removido, os pontos contatos serão removidos também!
+    </div>
+@end

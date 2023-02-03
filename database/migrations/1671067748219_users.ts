@@ -13,6 +13,7 @@ export default class extends BaseSchema {
       table.string('name', 100).notNullable()
       table.string('username',15).notNullable().unique()
       table.string('description',500).nullable()
+      table.bigInteger('score').notNullable().defaultTo(100)
 
       /**
        * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL

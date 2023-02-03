@@ -70,3 +70,8 @@ Route.group(() => {
   Route.get('dislike_resposta/:answerId', 'AnswerLikesController.dislike').as('answer_like.dislike')
   Route.get('deletar_like_resposta/:answerId', 'AnswerLikesController.destroy').as('answer_like.destroy')
 }).middleware('auth')
+
+Route.group(() => {
+  Route.get('/', 'UserController.rank').as('user.rank')
+  Route.get('/sobre', 'HomeController.aboutRank').as('home.aboutRank')
+}).prefix('/ranking').middleware('auth')

@@ -1,0 +1,27 @@
+@layout('layouts/main')
+@set('title','Yarural | Placar de Líderes')
+@set('rankActive', true)
+
+@section('body')
+
+    <div class="flex justify-end">
+        <a class="text-sky-500 hover:text-sky-800" href="{{route('home.aboutRank')}}">Como funcionam os pontos?</a>
+    </div>
+
+    @!component('components/table', {
+        users: users
+    })
+
+    <div class="btn-group p-1 m-1" >
+
+        @each(anchor in users.getUrlsForRange(1, users.lastPage))
+
+            <a role="button" href="{{ anchor.url }}" class="btn btn-md">
+                {{ anchor.page }}
+            </a>
+            
+        @endeach
+
+    </div>
+
+@end

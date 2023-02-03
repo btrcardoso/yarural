@@ -45,6 +45,12 @@ export default class UserController {
 
         const user = await User.findByOrFail('username', params.username)
 
+        const users = await User.query().orderBy('score', 'desc')
+
+        const matchUser = (actualUser: User) => actualUser.id == user.id;
+
+        const ranking = users.findIndex(matchUser) + 1
+
         let questions = await Question.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
         questions.baseUrl('/perfil/ya/' + user.username)
 
@@ -52,7 +58,7 @@ export default class UserController {
             question = await QuestionService.getQuestionWithLikes(question, auth.user!.id)
         }
 
-        return view.render('user/profile', {user, questions})
+        return view.render('user/profile', {user, questions, ranking})
     }
 
     public async showAnswers({view, params, request, auth}: HttpContextContract){
@@ -112,6 +118,23 @@ export default class UserController {
         user.save()
 
         return response.redirect().toRoute('user.show', {username: user.username})
+
+    }
+    
+    public async rank({request, view}: HttpContextContract) {
+        const page = request.input('page', 1)
+        const limit = 50
+
+        const users = await User.query().orderBy('score', 'desc').paginate(page, limit)
+        users.baseUrl('/ranking/')
+
+        for(const user of users) {
+            user["index"] = users.indexOf(user) + limit*(page-1) + 1
+            user["questionsCount"] = await UserService.countQuestions(user)
+            user["answersCount"] = await UserService.countAnswers(user)
+        }
+        
+        return view.render('user/rank', {users: users})
 
     }
 }
