@@ -68,6 +68,12 @@ export default class UserController {
 
         const user = await User.findByOrFail('username', params.username)
 
+        const users = await User.query().orderBy('score', 'desc')
+
+        const matchUser = (actualUser: User) => actualUser.id == user.id;
+
+        const ranking = users.findIndex(matchUser) + 1
+
         const answers = await Answer.query().where('userId', user.id).orderBy('created_at', 'desc').paginate(page, limit)
         answers.baseUrl('/perfil/ya/' + user.username + '/respostas')
 
@@ -85,7 +91,7 @@ export default class UserController {
             answer = await AnswerService.getAnswerWithLikes(answer, auth.user!.id)
         }
 
-        return view.render('user/profile', {user, answers})
+        return view.render('user/profile', {user, answers, ranking})
     }
 
     public async edit({ view }: HttpContextContract){
