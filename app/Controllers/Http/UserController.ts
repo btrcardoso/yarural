@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Application from '@ioc:Adonis/Core/Application'
+import Drive from '@ioc:Adonis/Core/Drive'
 
 import UserService from 'App/Services/UserService'
 import User from 'App/Models/User'
@@ -95,8 +96,11 @@ export default class UserController {
         return view.render('user/profile', {user, answers, ranking})
     }
 
-    public async edit({ view }: HttpContextContract){
-        return view.render('user/edit')
+    public async edit({auth, view }: HttpContextContract){
+
+        const user = auth.user!
+
+        return view.render('user/edit', {user})
     }
 
     public async update({auth, request, response}: HttpContextContract){
@@ -111,6 +115,8 @@ export default class UserController {
                 name: user.id + '.jpg',
                 overwrite: true, // overwrite in case of conflict
               })
+
+            user.imageUrl = await Drive.getUrl(user.id + '.jpg')
         }
 
         const inputUsername = request.input('username')

@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, hasMany, HasMany, computed } from '@ioc:Adonis/Lucid/Orm'
 import Question from './Question'
 import Answer from './Answer'
 
@@ -28,6 +28,9 @@ export default class User extends BaseModel {
 
   @column()
   public score: number
+
+  @column()
+  public imageUrl: string
 
   @hasMany( () => Question)
   public questions: HasMany<typeof Question>

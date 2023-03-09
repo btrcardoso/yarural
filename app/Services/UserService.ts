@@ -1,5 +1,6 @@
 import User from "App/Models/User"
 import Score from "App/Models/Score"
+import Drive from "@ioc:Adonis/Core/Drive"
 
 export default class UserService {
 
@@ -15,6 +16,7 @@ export default class UserService {
         user.password = password
         user.name = name
         user.username = username
+        user.imageUrl = await Drive.getUrl('0.jpg')
     
         await user.save()
         return user
