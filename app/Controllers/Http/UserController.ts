@@ -47,8 +47,6 @@ export default class UserController {
 
         const user = await User.findByOrFail('username', params.username)
 
-        const path = await Drive.getUrl(user.id +'.jpg')
-
         const users = await User.query().orderBy('score', 'desc')
 
         const matchUser = (actualUser: User) => actualUser.id == user.id;
@@ -114,6 +112,8 @@ export default class UserController {
                 name: user.id + '.jpg',
                 overwrite: true, // overwrite in case of conflict
               })
+
+            user.imageUrl = await Drive.getUrl(user.id + '.jpg')
         }
 
         const inputUsername = request.input('username')
