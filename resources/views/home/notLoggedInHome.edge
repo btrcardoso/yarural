@@ -3,15 +3,60 @@
 
 @section('body')
 
-    <div class="navbar bg-base-100">
-        <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">Yarural</a>
+    <div>
+        <div class="navbar bg-base-100 bg-white">
+            <div class="flex-1">
+            <a class="btn btn-ghost normal-case text-xl">Yarural</a>
+            </div>
+
+            <div class="flex-none dropdown dropdown-end">
         </div>
 
-        <div class="flex-none dropdown dropdown-end">
+        <a class="btn btn-primary btn-sm m-2" href="{{route('auth.create')}}">Login</a>
+        <a class="btn btn-primary btn-sm m-2" href="{{route('user.create')}}">Cadastrar-se</a>
     </div>
 
-    <a class="btn btn-primary" href="{{route('auth.create')}}">Login</a>
-    <a class="btn btn-primary" href="{{route('user.create')}}">Cadastrar-se</a>
+    <section class="py-10 bg-white sm:py-16 lg:py-24">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Como funciona o Yarual?</h2>
+            <p class="max-w-lg mx-auto mt-4 text-base leading-relaxed text-gray-600">Resolva todas suas dúvidas em um só lugar!</p>
+        </div>
+
+        <div class="relative mt-12 lg:mt-20">
+            <div class="absolute inset-x-0 hidden xl:px-44 top-2 md:block md:px-20 lg:px-28">
+                <img class="w-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/steps/2/curved-dotted-line.svg" alt="" />
+            </div>
+
+            <div class="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
+                <div>
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+                        <span class="text-xl font-semibold text-gray-700"> 1 </span>
+                    </div>
+                    <h3 class="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">Crie sua conta gratuitamente</h3>
+                    <p class="mt-4 text-base text-gray-600">O Yarural permite que alunos criem suas contas de maneira simples e fácil</p>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+                        <span class="text-xl font-semibold text-gray-700"> 2 </span>
+                    </div>
+                    <h3 class="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">Faça suas perguntas</h3>
+                    <p class="mt-4 text-base text-gray-600">Pergunte sobre assuntos como campus, cursos, secretaria, etc...</p>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+                        <span class="text-xl font-semibold text-gray-700"> 3 </span>
+                    </div>
+                    <h3 class="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">Receba as melhores respostas!</h3>
+                    <p class="mt-4 text-base text-gray-600">Inúmeras pessoas cadastradas no Yarural podem responder sua pergunta!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 @endsection
