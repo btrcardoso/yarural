@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Application from '@ioc:Adonis/Core/Application'
+import Drive from '@ioc:Adonis/Core/Drive'
 
 import UserService from 'App/Services/UserService'
 import User from 'App/Models/User'
@@ -46,6 +47,8 @@ export default class UserController {
 
         const user = await User.findByOrFail('username', params.username)
 
+        const path = await Drive.getUrl(user.id +'.jpg')
+
         const users = await User.query().orderBy('score', 'desc')
 
         const matchUser = (actualUser: User) => actualUser.id == user.id;
@@ -59,7 +62,7 @@ export default class UserController {
             question = await QuestionService.getQuestionWithLikes(question, auth.user!.id)
         }
 
-        return view.render('user/profile', {user, questions, ranking})
+        return view.render('user/profile', {user, questions, ranking, path})
     }
 
     public async showAnswers({view, params, request, auth}: HttpContextContract){
