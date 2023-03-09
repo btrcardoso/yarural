@@ -3,7 +3,7 @@
 
 @section('body')
 
-    <form action="{{ route('user.update') }}" method="POST">
+    <form action="{{ route('user.update') }}" method="POST" enctype="multipart/form-data">
 
         <div class="min-h-0 bg-base-200 rounded-lg shadow-xl p-4">
 
@@ -17,7 +17,9 @@
                     <label class="label">
                         <span class="label-text font-medium">Foto de perfil</span>
                     </label>
-                    <input type="file" class="file-input file-input-bordered file-input-secondary file-input-xs w-full max-w-xs" />
+                    <input type="file"
+                    id="avatar" name="avatar" accept="image/*"
+                    class="file-input file-input-bordered file-input-secondary file-input-xs w-full max-w-xs" />
                 </div>
 
             </div>

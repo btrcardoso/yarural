@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Application from '@ioc:Adonis/Core/Application'
 
 import UserService from 'App/Services/UserService'
 import User from 'App/Models/User'
@@ -101,6 +102,16 @@ export default class UserController {
     public async update({auth, request, response}: HttpContextContract){
 
         const user = await User.findOrFail(auth.user?.id)
+
+        const coverImage = request.file('avatar')
+
+        if (coverImage) {
+
+            await coverImage.move(Application.tmpPath('uploads'), {
+                name: user.id + '.jpg',
+                overwrite: true, // overwrite in case of conflict
+              })
+        }
 
         const inputUsername = request.input('username')
         
