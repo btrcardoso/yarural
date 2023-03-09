@@ -96,8 +96,11 @@ export default class UserController {
         return view.render('user/profile', {user, answers, ranking})
     }
 
-    public async edit({ view }: HttpContextContract){
-        return view.render('user/edit')
+    public async edit({auth, view }: HttpContextContract){
+
+        const user = auth.user!
+
+        return view.render('user/edit', {user})
     }
 
     public async update({auth, request, response}: HttpContextContract){

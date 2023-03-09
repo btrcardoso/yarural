@@ -1,7 +1,8 @@
 <div class="flex justify-between">
     {{-- Image and username --}}
     @!component('components/imageAndUsername', {
-        username: answer.user.username
+        username: answer.user.username,
+        path: answer.user.imageUrl
     })
 
     {{-- Likes --}}
