@@ -60,7 +60,7 @@ export default class UserController {
             question = await QuestionService.getQuestionWithLikes(question, auth.user!.id)
         }
 
-        return view.render('user/profile', {user, questions, ranking, path})
+        return view.render('user/profile', {user, questions, ranking})
     }
 
     public async showAnswers({view, params, request, auth}: HttpContextContract){
