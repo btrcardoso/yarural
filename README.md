@@ -6,6 +6,8 @@ Site de perguntas e respostas feito para a disciplina de Programação para WEB 
 
 ## Funcionamento
 
+- Veja as perguntas e respostas já feitas!
+
 ![](images/yarural-home-logado.PNG)
 
 - Crie seu perfil!
