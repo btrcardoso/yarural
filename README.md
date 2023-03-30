@@ -4,6 +4,8 @@ Site de perguntas e respostas feito para a disciplina de Programação para WEB 
 
 ![](images/yarural-home.PNG)
 
+Este site foi idealizado para que alunos possam fazer perguntas e respostas sobre dúvidas que envolvem a Universidade, com inspiração no Yahoo Respostas. Nele é possível criar e editar o seu perfil, fazer perguntas e respondê-las, além de votar nas perguntas de acordo com sua opinião.
+
 ## Funcionamento
 
 - Veja as perguntas e respostas já feitas!
